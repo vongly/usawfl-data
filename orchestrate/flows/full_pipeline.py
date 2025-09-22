@@ -20,7 +20,7 @@ def full_pipeline_flow():
     
     extract_load_task()
     build_output_folders_task()
-    dbt_run_task()
+    dbt_run_task('--target prod')
     create_psql_views_task()
     
 

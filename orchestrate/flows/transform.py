@@ -18,7 +18,7 @@ from tasks.dbt import (
 def transformations_flow():
 
     build_output_folders_task()
-    dbt_run_task()
+    dbt_run_task('--target prod')
     create_psql_views_task()
 
 if __name__ == '__main__':
