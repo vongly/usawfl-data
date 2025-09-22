@@ -93,6 +93,8 @@ def build_output_folders_task(cmd_suffix=None):
         )
 
         logger.info('✅ Successfully built output folders')
+        logger.info(f'  DEV: {output_path_dev}')
+        logger.info(f' PROD: {output_path_prod}')
 
     except Exception as e:
         logger.error('❌ Failed in "Build Output Folders": %s', e, exc_info=True)
