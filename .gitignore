@@ -29,7 +29,5 @@ transform/target/
 transform/dbt_packages/
 transform/logs/
 
-extract-load/.dlt/pipelines
-extract-load/.dlt/extract_files
-extract-load/.dlt/secrets.toml
+extract-load/.dlt/*
 extract-load/objects.txt

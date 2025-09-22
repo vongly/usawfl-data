@@ -1,7 +1,7 @@
 import subprocess
 from prefect import flow, task, get_run_logger
 
-import sys, os
+import sys, os, io
 from pathlib import Path
 import json
 
@@ -93,8 +93,8 @@ def build_output_folders_task(cmd_suffix=None):
         )
 
         logger.info('✅ Successfully built output folders')
-        logger.info(f'  DEV: {output_path_dev}')
-        logger.info(f' PROD: {output_path_prod}')
+        logger.info(f'DEV: {output_path_dev}')
+        logger.info(f'PROD: {output_path_prod}')
 
     except Exception as e:
         logger.error('❌ Failed in "Build Output Folders": %s', e, exc_info=True)
@@ -120,16 +120,12 @@ def create_psql_views_task():
         file_structure = dbtOutputFiles()
         file_structure.get_schema_structure()
         file_structure.get_field_dtypes(path=output_path_prod)
-#        file_structure.build_postgres_views(
-#            db_read_path=DB_READ_PATH,
-#            db=db,
-#        )
-        import io
+
         buffer = io.StringIO()
         sys_stdout = sys.stdout
         sys.stdout = buffer
         try:
-            file_structure.build_postgres_views(
+            file_structure.create_postgres_views(
                 db_read_path=DB_READ_PATH,
                 db=db,
             )
@@ -138,7 +134,7 @@ def create_psql_views_task():
 
         output = buffer.getvalue()
         if output.strip():
-            logger.info(f"build_postgres_views output:\n{output}")
+            logger.info(f"create_postgres_views output:\n{output}")
 
         logger.info(f'✅ Successfully created views @{DB_HOST}:{DB_PORT}/{DB_NAME}')
 
