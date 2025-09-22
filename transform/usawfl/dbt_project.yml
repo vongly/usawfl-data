@@ -1,0 +1,47 @@
+name: 'usawfl'
+version: '1.0.0'
+
+profile: 'usawfl'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+vars:
+  stat_fields: ['x2021_t_ds__c','x2021_in_ts__c','x2021_sacks__c','x2022_safeties__c','x2022_in_ts__c','x2022_sacks__c','x2022_t_ds__c','x2023_safeties__c','x2023_in_ts__c','x2023_sacks__c','x2023_t_ds__c','x2024_safeties__c','x2024_in_ts__c','x2024_sacks__c','x2024_t_ds__c']
+  environment: "{{ target.name }}"
+  parquet_output_dev: "{{ env_var('OUTPUT_PATH_DEV') }}"
+  parquet_output_prod: "{{ env_var('OUTPUT_PATH_PROD') }}"
+
+on-run-start:
+
+quoting:
+  database: false
+  schema: true
+  identifier: true
+
+models:
+  usawfl:
+    +materialized: table
+    +post-hook:
+      - "{% if var('environment') == 'prod' %}
+          COPY (SELECT * FROM {{ this }})
+          TO '{{ var('parquet_output_prod') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet'
+          (FORMAT PARQUET, OVERWRITE)
+        {% else %}
+          COPY (SELECT * FROM {{ this }})
+          TO '{{ var('parquet_output_dev') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet'
+          (FORMAT PARQUET, OVERWRITE)
+        {% endif %}
+        "
+    fct_salesforce:
+      +schema: fct_salesforce
+    fct_references:
+      +schema: fct_references

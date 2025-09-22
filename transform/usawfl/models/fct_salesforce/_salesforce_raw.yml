@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: salesforce_raw
+    schema: salesforce_raw
+    config:
+      meta:
+        external_location: "s3://move-united/usawfl_salesforce_to_s3_file/raw_salesforce/{identifier}/*.parquet"
+    tables:
+      - name: contacts
+        identifier: contact
+      - name: teams
+        identifier: usawfl_team__c
+      - name: tournaments
+        identifier: usawfl_tournaments__c
+      - name: officials
+        identifier: usawfl_officials__c
+      - name: official_links
+        identifier: usawfl_official_link__c
+      - name: members
+        identifier: usawfl__c

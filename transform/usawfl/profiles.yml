@@ -1,0 +1,27 @@
+usawfl:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: ':memory:'
+      extensions:
+        - httpfs
+        - parquet
+      settings:
+        s3_url_style: vhost
+        s3_region: "{{ env_var('S3_REGION') }}"
+        s3_endpoint: "{{ env_var('S3_ENDPOINT') }}"
+        s3_access_key_id: "{{ env_var('S3_ACCESS_KEY') }}"
+        s3_secret_access_key: "{{ env_var('S3_SECRET_KEY') }}"
+    prod:
+      type: duckdb
+      path: ':memory:'
+      extensions:
+        - httpfs
+        - parquet
+      settings:
+        s3_url_style: vhost
+        s3_region: "{{ env_var('S3_REGION') }}"
+        s3_endpoint: "{{ env_var('S3_ENDPOINT') }}"
+        s3_access_key_id: "{{ env_var('S3_ACCESS_KEY') }}"
+        s3_secret_access_key: "{{ env_var('S3_SECRET_KEY') }}"
