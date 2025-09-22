@@ -1,5 +1,5 @@
 import subprocess
-from prefect import flow
+from prefect import flow, get_run_logger
 
 import sys
 from pathlib import Path

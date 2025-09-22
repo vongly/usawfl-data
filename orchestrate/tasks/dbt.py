@@ -120,10 +120,25 @@ def create_psql_views_task():
         file_structure = dbtOutputFiles()
         file_structure.get_schema_structure()
         file_structure.get_field_dtypes(path=output_path_prod)
-        file_structure.build_postgres_views(
-            db_read_path=DB_READ_PATH,
-            db=db,
-        )
+#        file_structure.build_postgres_views(
+#            db_read_path=DB_READ_PATH,
+#            db=db,
+#        )
+        import io
+        buffer = io.StringIO()
+        sys_stdout = sys.stdout
+        sys.stdout = buffer
+        try:
+            file_structure.build_postgres_views(
+                db_read_path=DB_READ_PATH,
+                db=db,
+            )
+        finally:
+            sys.stdout = sys_stdout
+
+        output = buffer.getvalue()
+        if output.strip():
+            logger.info(f"build_postgres_views output:\n{output}")
 
         logger.info(f'✅ Successfully created views @{DB_HOST}:{DB_PORT}/{DB_NAME}')
 

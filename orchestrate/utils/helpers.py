@@ -124,7 +124,8 @@ class dbtOutputFiles:
 
         for dtype_model in self.dtype_models:
             fields_query = [ f'''cast(a['{field['name']}'] as {field['dtype']}) as {field['name']}''' for field in dtype_model['fields'] ]
-            fields_query_string = ',\n'.join(fields_query)
+            spaces = ' ' * 20
+            fields_query_string = f',\n{spaces}'.format().join(fields_query)
 
             sql = f'''
                 create schema if not exists {dtype_model['schema']};
@@ -136,9 +137,8 @@ class dbtOutputFiles:
                 from
                     read_parquet('{db_read_path}/{dtype_model['schema']}/{dtype_model['model']}/*.parquet') a
                 ;'''
-
+            print(sql)
             cursor.execute(sql)
             conn.commit()
 
-        
 
