@@ -118,7 +118,7 @@ class dbtOutputFiles:
 
         return self.dtype_models
 
-    def build_postgres_views(self, db_read_path, db):
+    def create_postgres_views(self, db_read_path, db):
         conn = db.conn
         cursor = conn.cursor()
 

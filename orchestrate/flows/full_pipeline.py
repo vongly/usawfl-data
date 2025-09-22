@@ -18,17 +18,11 @@ from tasks.dbt import (
 @flow(name='Full Pipeline')
 def full_pipeline_flow():
     
-    extract_load = extract_load_task.submit()
-    extract_load.result()
-
-    build_output_folders = build_output_folders_task.submit()
-    build_output_folders.result()
-
-    dbt_run = dbt_run_task.submit()
-    dbt_run.result()
-
-    create_psql_views = create_psql_views_task.submit()
-    create_psql_views.result()
+    extract_load_task()
+    build_output_folders_task()
+    dbt_run_task()
+    create_psql_views_task()
+    
 
 if __name__ == '__main__':
     full_pipeline_flow()

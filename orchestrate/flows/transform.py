@@ -17,14 +17,9 @@ from tasks.dbt import (
 @flow(name='Transformations')
 def transformations_flow():
 
-    build_output_folders = build_output_folders_task.submit()
-    build_output_folders.result()
-    
-    dbt_run = dbt_run_task.submit()
-    dbt_run.result()
-
-    create_psql_views = create_psql_views_task.submit()
-    create_psql_views.result()
+    build_output_folders_task()
+    dbt_run_task()
+    create_psql_views_task()
 
 if __name__ == '__main__':
     transformations_flow()
