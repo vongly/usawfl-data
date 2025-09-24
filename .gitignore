@@ -10,6 +10,8 @@ __pycache__/
 *.egg
 .eggs/
 
+*/env.py
+**/env.py
 *.env
 *.venv
 .ipynb_checkpoints/

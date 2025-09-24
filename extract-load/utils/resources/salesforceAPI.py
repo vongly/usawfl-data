@@ -36,7 +36,6 @@ class SalesforceResource:
 
         yield from self.api_call_session.yield_records(object_name=self.object_name, incremental_string=incremental_string)
 
-
     def create_resource(self):
         @dlt.resource(name=self.object_name, table_name=self.object_name, write_disposition='append', primary_key=None)
         def my_resource(incremental_obj=self.incremental_obj):

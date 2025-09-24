@@ -34,6 +34,8 @@ class SalesforceBulkCall:
         token=SF_TOKEN,
         login_url=SF_LOGIN_URL,
         simple_call=connect_simple_salesforce(),
+        test=False,
+        test_limit=1,
     ):
 
         self.simple_call = simple_call
@@ -41,6 +43,8 @@ class SalesforceBulkCall:
         self.password = password
         self.token = token
         self.login_url = login_url
+        self.test = test
+        self.test_limit = test_limit
         
         soap_body = f'''
         <env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
@@ -76,6 +80,12 @@ class SalesforceBulkCall:
         fields = [ field['name'] for field in obj_desc['fields'] if field['name'] not in compound_fields ]
 
         query = f'select {', '.join(fields)} from {object_name}' + where_clause
+
+        # Tests return default value of 1 record
+        if self.test:
+            if not self.test_limit or self.test_limit < 1:
+                self.test_limit = 1
+            query += f' LIMIT {self.test_limit}'
 
         job_response = requests.post(
             self.job_url,

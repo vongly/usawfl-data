@@ -59757,3 +59757,1767 @@ alter table memory."fct_salesforce"."stats__dbt_tmp" rename to "stats"
 [0m13:15:22.197413 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1046d3830>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104d34470>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104c0bf80>]}
 [0m13:15:22.197914 [debug] [MainThread]: Flushing usage events
 [0m13:15:22.651788 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m16:29:38.393686 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111b26000>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11211bf20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1125832c0>]}
+
+
+============================== 16:29:38.402944 | 14348c2d-da3c-440a-83c1-3200442a5806 ==============================
+[0m16:29:38.402944 [info ] [MainThread]: Running with dbt=1.10.9
+[0m16:29:38.403878 [debug] [MainThread]: running dbt with arguments {'write_json': 'True', 'no_print': 'None', 'static_parser': 'True', 'printer_width': '80', 'use_experimental_parser': 'False', 'partial_parse': 'True', 'log_format': 'default', 'fail_fast': 'False', 'quiet': 'False', 'log_cache_events': 'False', 'debug': 'False', 'empty': 'None', 'warn_error': 'None', 'invocation_command': 'dbt ls --resource-type model --output json', 'indirect_selection': 'eager', 'profiles_dir': '/Users/vongly/dev/freelance/MoveUnited/usawfl/transform/usawfl', 'target_path': 'None', 'introspect': 'True', 'version_check': 'True', 'send_anonymous_usage_stats': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'use_colors': 'True', 'log_path': '/Users/vongly/dev/freelance/MoveUnited/usawfl/transform/usawfl/logs', 'cache_selected_only': 'False'}
+[0m16:29:39.428628 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '14348c2d-da3c-440a-83c1-3200442a5806', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1125fd280>]}
+[0m16:29:39.512220 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '14348c2d-da3c-440a-83c1-3200442a5806', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1125393a0>]}
+[0m16:29:39.516185 [info ] [MainThread]: Registered adapter: duckdb=1.9.6
+[0m16:29:39.684197 [debug] [MainThread]: checksum: 6543b8b248ceda473ef0d611849d5d909085b6b714afa9b515e9635faea7af23, vars: {}, profile: , target: , version: 1.10.9
+[0m16:29:39.881207 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m16:29:39.882287 [debug] [MainThread]: Partial parsing: updated file: usawfl://models/fct_salesforce/members.sql
+[0m16:29:40.209594 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '14348c2d-da3c-440a-83c1-3200442a5806', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x112b9b9e0>]}
+[0m16:29:40.291290 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/vongly/dev/freelance/MoveUnited/usawfl/transform/usawfl/target/manifest.json
+[0m16:29:40.295565 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/vongly/dev/freelance/MoveUnited/usawfl/transform/usawfl/target/semantic_manifest.json
+[0m16:29:40.343482 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '14348c2d-da3c-440a-83c1-3200442a5806', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x112cb5940>]}
+[0m16:29:40.344407 [info ] [MainThread]: Found 7 models, 6 sources, 441 macros
+[0m16:29:40.345039 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '14348c2d-da3c-440a-83c1-3200442a5806', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x112bb1c70>]}
+[0m16:29:40.346813 [info ] [MainThread]: {"name": "contacts", "resource_type": "model", "package_name": "usawfl", "original_file_path": "models/fct_salesforce/contacts.sql", "unique_id": "model.usawfl.contacts", "alias": "contacts", "config": {"enabled": true, "alias": null, "schema": "fct_salesforce", "database": null, "tags": [], "meta": {}, "group": null, "materialized": "table", "incremental_strategy": null, "batch_size": null, "lookback": 1, "begin": null, "persist_docs": {}, "post-hook": [{"sql": "{% if var('environment') == 'prod' %} COPY (SELECT * FROM {{ this }}) TO '{{ var('parquet_output_prod') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet' (FORMAT PARQUET, OVERWRITE) {% else %} COPY (SELECT * FROM {{ this }}) TO '{{ var('parquet_output_dev') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet' (FORMAT PARQUET, OVERWRITE) {% endif %} ", "transaction": true, "index": null}], "pre-hook": [], "quoting": {}, "column_types": {}, "full_refresh": null, "unique_key": null, "on_schema_change": "ignore", "on_configuration_change": "apply", "grants": {}, "packages": [], "docs": {"show": true, "node_color": null}, "contract": {"enforced": false, "alias_types": true}, "event_time": null, "concurrent_batches": null, "access": "protected", "freshness": null}, "tags": [], "depends_on": {"macros": ["macro.usawfl.title_name", "macro.usawfl.return_numbers_from_string", "macro.usawfl.clean_punct", "macro.usawfl.format_phone_number", "macro.usawfl.clean_contact_states", "macro.usawfl.clean_to_5_digit_zip", "macro.usawfl.clean_contact_countries"], "nodes": ["source.usawfl.salesforce_raw.contacts", "model.usawfl.states"]}}
+[0m16:29:40.347742 [info ] [MainThread]: {"name": "members", "resource_type": "model", "package_name": "usawfl", "original_file_path": "models/fct_salesforce/members.sql", "unique_id": "model.usawfl.members", "alias": "members", "config": {"enabled": true, "alias": null, "schema": "fct_salesforce", "database": null, "tags": [], "meta": {}, "group": null, "materialized": "table", "incremental_strategy": null, "batch_size": null, "lookback": 1, "begin": null, "persist_docs": {}, "post-hook": [{"sql": "{% if var('environment') == 'prod' %} COPY (SELECT * FROM {{ this }}) TO '{{ var('parquet_output_prod') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet' (FORMAT PARQUET, OVERWRITE) {% else %} COPY (SELECT * FROM {{ this }}) TO '{{ var('parquet_output_dev') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet' (FORMAT PARQUET, OVERWRITE) {% endif %} ", "transaction": true, "index": null}], "pre-hook": [], "quoting": {}, "column_types": {}, "full_refresh": null, "unique_key": null, "on_schema_change": "ignore", "on_configuration_change": "apply", "grants": {}, "packages": [], "docs": {"show": true, "node_color": null}, "contract": {"enforced": false, "alias_types": true}, "event_time": null, "concurrent_batches": null, "access": "protected", "freshness": null}, "tags": [], "depends_on": {"macros": [], "nodes": ["source.usawfl.salesforce_raw.members", "model.usawfl.contacts", "model.usawfl.teams"]}}
+[0m16:29:40.348588 [info ] [MainThread]: {"name": "officials", "resource_type": "model", "package_name": "usawfl", "original_file_path": "models/fct_salesforce/officials.sql", "unique_id": "model.usawfl.officials", "alias": "officials", "config": {"enabled": true, "alias": null, "schema": "fct_salesforce", "database": null, "tags": [], "meta": {}, "group": null, "materialized": "table", "incremental_strategy": null, "batch_size": null, "lookback": 1, "begin": null, "persist_docs": {}, "post-hook": [{"sql": "{% if var('environment') == 'prod' %} COPY (SELECT * FROM {{ this }}) TO '{{ var('parquet_output_prod') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet' (FORMAT PARQUET, OVERWRITE) {% else %} COPY (SELECT * FROM {{ this }}) TO '{{ var('parquet_output_dev') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet' (FORMAT PARQUET, OVERWRITE) {% endif %} ", "transaction": true, "index": null}], "pre-hook": [], "quoting": {}, "column_types": {}, "full_refresh": null, "unique_key": null, "on_schema_change": "ignore", "on_configuration_change": "apply", "grants": {}, "packages": [], "docs": {"show": true, "node_color": null}, "contract": {"enforced": false, "alias_types": true}, "event_time": null, "concurrent_batches": null, "access": "protected", "freshness": null}, "tags": [], "depends_on": {"macros": [], "nodes": ["source.usawfl.salesforce_raw.official_links", "source.usawfl.salesforce_raw.officials", "model.usawfl.tournaments", "model.usawfl.contacts"]}}
+[0m16:29:40.349405 [info ] [MainThread]: {"name": "states", "resource_type": "model", "package_name": "usawfl", "original_file_path": "models/fct_references/states.sql", "unique_id": "model.usawfl.states", "alias": "states", "config": {"enabled": true, "alias": null, "schema": "fct_references", "database": null, "tags": [], "meta": {}, "group": null, "materialized": "table", "incremental_strategy": null, "batch_size": null, "lookback": 1, "begin": null, "persist_docs": {}, "post-hook": [{"sql": "{% if var('environment') == 'prod' %} COPY (SELECT * FROM {{ this }}) TO '{{ var('parquet_output_prod') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet' (FORMAT PARQUET, OVERWRITE) {% else %} COPY (SELECT * FROM {{ this }}) TO '{{ var('parquet_output_dev') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet' (FORMAT PARQUET, OVERWRITE) {% endif %} ", "transaction": true, "index": null}], "pre-hook": [], "quoting": {}, "column_types": {}, "full_refresh": null, "unique_key": null, "on_schema_change": "ignore", "on_configuration_change": "apply", "grants": {}, "packages": [], "docs": {"show": true, "node_color": null}, "contract": {"enforced": false, "alias_types": true}, "event_time": null, "concurrent_batches": null, "access": "protected", "freshness": null}, "tags": [], "depends_on": {"macros": [], "nodes": []}}
+[0m16:29:40.350468 [info ] [MainThread]: {"name": "stats", "resource_type": "model", "package_name": "usawfl", "original_file_path": "models/fct_salesforce/stats.sql", "unique_id": "model.usawfl.stats", "alias": "stats", "config": {"enabled": true, "alias": null, "schema": "fct_salesforce", "database": null, "tags": [], "meta": {}, "group": null, "materialized": "table", "incremental_strategy": null, "batch_size": null, "lookback": 1, "begin": null, "persist_docs": {}, "post-hook": [{"sql": "{% if var('environment') == 'prod' %} COPY (SELECT * FROM {{ this }}) TO '{{ var('parquet_output_prod') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet' (FORMAT PARQUET, OVERWRITE) {% else %} COPY (SELECT * FROM {{ this }}) TO '{{ var('parquet_output_dev') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet' (FORMAT PARQUET, OVERWRITE) {% endif %} ", "transaction": true, "index": null}], "pre-hook": [], "quoting": {}, "column_types": {}, "full_refresh": null, "unique_key": null, "on_schema_change": "ignore", "on_configuration_change": "apply", "grants": {}, "packages": [], "docs": {"show": true, "node_color": null}, "contract": {"enforced": false, "alias_types": true}, "event_time": null, "concurrent_batches": null, "access": "protected", "freshness": null}, "tags": [], "depends_on": {"macros": [], "nodes": ["source.usawfl.salesforce_raw.members", "model.usawfl.teams", "model.usawfl.contacts"]}}
+[0m16:29:40.351192 [info ] [MainThread]: {"name": "teams", "resource_type": "model", "package_name": "usawfl", "original_file_path": "models/fct_salesforce/teams.sql", "unique_id": "model.usawfl.teams", "alias": "teams", "config": {"enabled": true, "alias": null, "schema": "fct_salesforce", "database": null, "tags": [], "meta": {}, "group": null, "materialized": "table", "incremental_strategy": null, "batch_size": null, "lookback": 1, "begin": null, "persist_docs": {}, "post-hook": [{"sql": "{% if var('environment') == 'prod' %} COPY (SELECT * FROM {{ this }}) TO '{{ var('parquet_output_prod') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet' (FORMAT PARQUET, OVERWRITE) {% else %} COPY (SELECT * FROM {{ this }}) TO '{{ var('parquet_output_dev') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet' (FORMAT PARQUET, OVERWRITE) {% endif %} ", "transaction": true, "index": null}], "pre-hook": [], "quoting": {}, "column_types": {}, "full_refresh": null, "unique_key": null, "on_schema_change": "ignore", "on_configuration_change": "apply", "grants": {}, "packages": [], "docs": {"show": true, "node_color": null}, "contract": {"enforced": false, "alias_types": true}, "event_time": null, "concurrent_batches": null, "access": "protected", "freshness": null}, "tags": [], "depends_on": {"macros": [], "nodes": ["source.usawfl.salesforce_raw.teams", "model.usawfl.contacts"]}}
+[0m16:29:40.351877 [info ] [MainThread]: {"name": "tournaments", "resource_type": "model", "package_name": "usawfl", "original_file_path": "models/fct_salesforce/tournaments.sql", "unique_id": "model.usawfl.tournaments", "alias": "tournaments", "config": {"enabled": true, "alias": null, "schema": "fct_salesforce", "database": null, "tags": [], "meta": {}, "group": null, "materialized": "table", "incremental_strategy": null, "batch_size": null, "lookback": 1, "begin": null, "persist_docs": {}, "post-hook": [{"sql": "{% if var('environment') == 'prod' %} COPY (SELECT * FROM {{ this }}) TO '{{ var('parquet_output_prod') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet' (FORMAT PARQUET, OVERWRITE) {% else %} COPY (SELECT * FROM {{ this }}) TO '{{ var('parquet_output_dev') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet' (FORMAT PARQUET, OVERWRITE) {% endif %} ", "transaction": true, "index": null}], "pre-hook": [], "quoting": {}, "column_types": {}, "full_refresh": null, "unique_key": null, "on_schema_change": "ignore", "on_configuration_change": "apply", "grants": {}, "packages": [], "docs": {"show": true, "node_color": null}, "contract": {"enforced": false, "alias_types": true}, "event_time": null, "concurrent_batches": null, "access": "protected", "freshness": null}, "tags": [], "depends_on": {"macros": ["macro.usawfl.parse_tournament_date_string"], "nodes": ["source.usawfl.salesforce_raw.tournaments"]}}
+[0m16:29:40.355806 [debug] [MainThread]: Resource report: {"command_name": "list", "command_success": true, "command_wall_clock_time": 2.058207, "process_in_blocks": "0", "process_kernel_time": 0.510899, "process_mem_max_rss": "125169664", "process_out_blocks": "0", "process_user_time": 3.008768}
+[0m16:29:40.356755 [debug] [MainThread]: Command `dbt ls` succeeded at 16:29:40.356582 after 2.06 seconds
+[0m16:29:40.357377 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x112583530>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x112583830>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1125832c0>]}
+[0m16:29:40.357932 [debug] [MainThread]: Flushing usage events
+[0m16:29:40.823234 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m16:29:43.353859 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e7f15b0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e91f2c0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e91ed20>]}
+
+
+============================== 16:29:43.359443 | ef85d04e-8310-44c8-a59d-5770ad4d96ec ==============================
+[0m16:29:43.359443 [info ] [MainThread]: Running with dbt=1.10.9
+[0m16:29:43.360158 [debug] [MainThread]: running dbt with arguments {'use_experimental_parser': 'False', 'fail_fast': 'False', 'target_path': 'None', 'log_path': '/Users/vongly/dev/freelance/MoveUnited/usawfl/transform/usawfl/logs', 'static_parser': 'True', 'cache_selected_only': 'False', 'invocation_command': 'dbt run --target prod', 'log_cache_events': 'False', 'partial_parse': 'True', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'profiles_dir': '/Users/vongly/dev/freelance/MoveUnited/usawfl/transform/usawfl', 'send_anonymous_usage_stats': 'True', 'log_format': 'default', 'indirect_selection': 'eager', 'quiet': 'False', 'empty': 'False', 'printer_width': '80', 'debug': 'False', 'introspect': 'True', 'use_colors': 'True', 'write_json': 'True', 'warn_error': 'None', 'version_check': 'True'}
+[0m16:29:43.660427 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'ef85d04e-8310-44c8-a59d-5770ad4d96ec', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10eb0cdd0>]}
+[0m16:29:43.736977 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'ef85d04e-8310-44c8-a59d-5770ad4d96ec', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e78c770>]}
+[0m16:29:43.739118 [info ] [MainThread]: Registered adapter: duckdb=1.9.6
+[0m16:29:43.940042 [debug] [MainThread]: checksum: 2980a21a4fc584f27f03453e4d43c980470d5de79693c5ce0bc2b462a52f088e, vars: {}, profile: , target: prod, version: 1.10.9
+[0m16:29:44.052631 [info ] [MainThread]: Unable to do partial parsing because config vars, config profile, or config target have changed
+[0m16:29:44.053171 [debug] [MainThread]: previous checksum: 2980a21a4fc584f27f03453e4d43c980470d5de79693c5ce0bc2b462a52f088e, current checksum: 6543b8b248ceda473ef0d611849d5d909085b6b714afa9b515e9635faea7af23
+[0m16:29:44.053647 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': 'ef85d04e-8310-44c8-a59d-5770ad4d96ec', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e2b97f0>]}
+[0m16:29:45.731035 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'ef85d04e-8310-44c8-a59d-5770ad4d96ec', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10f02f320>]}
+[0m16:29:45.809440 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/vongly/dev/freelance/MoveUnited/usawfl/transform/usawfl/target/manifest.json
+[0m16:29:45.811883 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/vongly/dev/freelance/MoveUnited/usawfl/transform/usawfl/target/semantic_manifest.json
+[0m16:29:45.829942 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'ef85d04e-8310-44c8-a59d-5770ad4d96ec', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10dc7fb30>]}
+[0m16:29:45.830602 [info ] [MainThread]: Found 7 models, 6 sources, 441 macros
+[0m16:29:45.831171 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'ef85d04e-8310-44c8-a59d-5770ad4d96ec', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ed2f950>]}
+[0m16:29:45.833642 [info ] [MainThread]: 
+[0m16:29:45.834134 [info ] [MainThread]: Concurrency: 1 threads (target='prod')
+[0m16:29:45.834539 [info ] [MainThread]: 
+[0m16:29:45.835135 [debug] [MainThread]: Acquiring new duckdb connection 'master'
+[0m16:29:45.841026 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_memory'
+[0m16:29:45.928761 [debug] [ThreadPool]: Using duckdb connection "list_memory"
+[0m16:29:45.929295 [debug] [ThreadPool]: On list_memory: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "connection_name": "list_memory"} */
+
+    
+    select schema_name
+    from system.information_schema.schemata
+    
+    where lower(catalog_name) = 'memory'
+    
+  
+  
+[0m16:29:45.929725 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m16:29:46.103084 [debug] [ThreadPool]: SQL status: OK in 0.173 seconds
+[0m16:29:46.104767 [debug] [ThreadPool]: On list_memory: Close
+[0m16:29:46.107258 [debug] [ThreadPool]: Using duckdb connection "list_memory"
+[0m16:29:46.107744 [debug] [ThreadPool]: On list_memory: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "connection_name": "list_memory"} */
+
+    
+    select schema_name
+    from system.information_schema.schemata
+    
+    where lower(catalog_name) = 'memory'
+    
+  
+  
+[0m16:29:46.108152 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m16:29:46.110289 [debug] [ThreadPool]: SQL status: OK in 0.002 seconds
+[0m16:29:46.111756 [debug] [ThreadPool]: On list_memory: Close
+[0m16:29:46.112526 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_memory, now create_memory_fct_salesforce)
+[0m16:29:46.113078 [debug] [ThreadPool]: Creating schema "database: "memory"
+schema: "fct_salesforce"
+"
+[0m16:29:46.120268 [debug] [ThreadPool]: Using duckdb connection "create_memory_fct_salesforce"
+[0m16:29:46.120756 [debug] [ThreadPool]: On create_memory_fct_salesforce: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "connection_name": "create_memory_fct_salesforce"} */
+
+    
+        select type from duckdb_databases()
+        where lower(database_name)='memory'
+        and type='sqlite'
+    
+  
+[0m16:29:46.121277 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m16:29:46.123366 [debug] [ThreadPool]: SQL status: OK in 0.002 seconds
+[0m16:29:46.124947 [debug] [ThreadPool]: Using duckdb connection "create_memory_fct_salesforce"
+[0m16:29:46.125388 [debug] [ThreadPool]: On create_memory_fct_salesforce: BEGIN
+[0m16:29:46.126039 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m16:29:46.126440 [debug] [ThreadPool]: Using duckdb connection "create_memory_fct_salesforce"
+[0m16:29:46.126898 [debug] [ThreadPool]: On create_memory_fct_salesforce: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "connection_name": "create_memory_fct_salesforce"} */
+
+    
+    
+        create schema if not exists memory."fct_salesforce"
+    
+[0m16:29:46.127689 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m16:29:46.128865 [debug] [ThreadPool]: On create_memory_fct_salesforce: COMMIT
+[0m16:29:46.129319 [debug] [ThreadPool]: Using duckdb connection "create_memory_fct_salesforce"
+[0m16:29:46.129774 [debug] [ThreadPool]: On create_memory_fct_salesforce: COMMIT
+[0m16:29:46.130454 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m16:29:46.130889 [debug] [ThreadPool]: On create_memory_fct_salesforce: Close
+[0m16:29:46.131583 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly create_memory_fct_salesforce, now create_memory_fct_references)
+[0m16:29:46.132354 [debug] [ThreadPool]: Creating schema "database: "memory"
+schema: "fct_references"
+"
+[0m16:29:46.135181 [debug] [ThreadPool]: Using duckdb connection "create_memory_fct_references"
+[0m16:29:46.135713 [debug] [ThreadPool]: On create_memory_fct_references: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "connection_name": "create_memory_fct_references"} */
+
+    
+        select type from duckdb_databases()
+        where lower(database_name)='memory'
+        and type='sqlite'
+    
+  
+[0m16:29:46.136139 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m16:29:46.138768 [debug] [ThreadPool]: SQL status: OK in 0.003 seconds
+[0m16:29:46.140745 [debug] [ThreadPool]: Using duckdb connection "create_memory_fct_references"
+[0m16:29:46.141208 [debug] [ThreadPool]: On create_memory_fct_references: BEGIN
+[0m16:29:46.141882 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m16:29:46.142317 [debug] [ThreadPool]: Using duckdb connection "create_memory_fct_references"
+[0m16:29:46.142960 [debug] [ThreadPool]: On create_memory_fct_references: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "connection_name": "create_memory_fct_references"} */
+
+    
+    
+        create schema if not exists memory."fct_references"
+    
+[0m16:29:46.143914 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m16:29:46.145055 [debug] [ThreadPool]: On create_memory_fct_references: COMMIT
+[0m16:29:46.145533 [debug] [ThreadPool]: Using duckdb connection "create_memory_fct_references"
+[0m16:29:46.145942 [debug] [ThreadPool]: On create_memory_fct_references: COMMIT
+[0m16:29:46.146809 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m16:29:46.147285 [debug] [ThreadPool]: On create_memory_fct_references: Close
+[0m16:29:46.149986 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly create_memory_fct_references, now list_memory_fct_salesforce)
+[0m16:29:46.156654 [debug] [ThreadPool]: Using duckdb connection "list_memory_fct_salesforce"
+[0m16:29:46.157138 [debug] [ThreadPool]: On list_memory_fct_salesforce: BEGIN
+[0m16:29:46.157526 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m16:29:46.159560 [debug] [ThreadPool]: SQL status: OK in 0.002 seconds
+[0m16:29:46.160135 [debug] [ThreadPool]: Using duckdb connection "list_memory_fct_salesforce"
+[0m16:29:46.160780 [debug] [ThreadPool]: On list_memory_fct_salesforce: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "connection_name": "list_memory_fct_salesforce"} */
+select
+      'memory' as database,
+      table_name as name,
+      table_schema as schema,
+      CASE table_type
+        WHEN 'BASE TABLE' THEN 'table'
+        WHEN 'VIEW' THEN 'view'
+        WHEN 'LOCAL TEMPORARY' THEN 'table'
+        END as type
+    from system.information_schema.tables
+    where lower(table_schema) = 'fct_salesforce'
+    and lower(table_catalog) = 'memory'
+  
+[0m16:29:46.179823 [debug] [ThreadPool]: SQL status: OK in 0.018 seconds
+[0m16:29:46.181679 [debug] [ThreadPool]: On list_memory_fct_salesforce: ROLLBACK
+[0m16:29:46.185165 [debug] [ThreadPool]: Failed to rollback 'list_memory_fct_salesforce'
+[0m16:29:46.185815 [debug] [ThreadPool]: On list_memory_fct_salesforce: Close
+[0m16:29:46.186696 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_memory_fct_salesforce, now list_memory_fct_references)
+[0m16:29:46.190784 [debug] [ThreadPool]: Using duckdb connection "list_memory_fct_references"
+[0m16:29:46.191260 [debug] [ThreadPool]: On list_memory_fct_references: BEGIN
+[0m16:29:46.191646 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m16:29:46.193730 [debug] [ThreadPool]: SQL status: OK in 0.002 seconds
+[0m16:29:46.194219 [debug] [ThreadPool]: Using duckdb connection "list_memory_fct_references"
+[0m16:29:46.194806 [debug] [ThreadPool]: On list_memory_fct_references: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "connection_name": "list_memory_fct_references"} */
+select
+      'memory' as database,
+      table_name as name,
+      table_schema as schema,
+      CASE table_type
+        WHEN 'BASE TABLE' THEN 'table'
+        WHEN 'VIEW' THEN 'view'
+        WHEN 'LOCAL TEMPORARY' THEN 'table'
+        END as type
+    from system.information_schema.tables
+    where lower(table_schema) = 'fct_references'
+    and lower(table_catalog) = 'memory'
+  
+[0m16:29:46.199176 [debug] [ThreadPool]: SQL status: OK in 0.004 seconds
+[0m16:29:46.201635 [debug] [ThreadPool]: On list_memory_fct_references: ROLLBACK
+[0m16:29:46.202992 [debug] [ThreadPool]: Failed to rollback 'list_memory_fct_references'
+[0m16:29:46.203576 [debug] [ThreadPool]: On list_memory_fct_references: Close
+[0m16:29:46.204595 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'ef85d04e-8310-44c8-a59d-5770ad4d96ec', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10f00eba0>]}
+[0m16:29:46.205247 [debug] [MainThread]: Using duckdb connection "master"
+[0m16:29:46.205669 [debug] [MainThread]: On master: BEGIN
+[0m16:29:46.206081 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m16:29:46.207850 [debug] [MainThread]: SQL status: OK in 0.002 seconds
+[0m16:29:46.208331 [debug] [MainThread]: On master: COMMIT
+[0m16:29:46.208755 [debug] [MainThread]: Using duckdb connection "master"
+[0m16:29:46.209147 [debug] [MainThread]: On master: COMMIT
+[0m16:29:46.209797 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m16:29:46.210394 [debug] [MainThread]: On master: Close
+[0m16:29:46.214597 [debug] [Thread-1 (]: Began running node model.usawfl.states
+[0m16:29:46.215279 [info ] [Thread-1 (]: 1 of 7 START sql table model fct_references.states ............................. [RUN]
+[0m16:29:46.216093 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_memory_fct_references, now model.usawfl.states)
+[0m16:29:46.217481 [debug] [Thread-1 (]: Began compiling node model.usawfl.states
+[0m16:29:46.226468 [debug] [Thread-1 (]: Writing injected SQL for node "model.usawfl.states"
+[0m16:29:46.228035 [debug] [Thread-1 (]: Began executing node model.usawfl.states
+[0m16:29:46.273977 [debug] [Thread-1 (]: Writing runtime sql for node "model.usawfl.states"
+[0m16:29:46.274976 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.states"
+[0m16:29:46.275450 [debug] [Thread-1 (]: On model.usawfl.states: BEGIN
+[0m16:29:46.275893 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m16:29:46.278089 [debug] [Thread-1 (]: SQL status: OK in 0.002 seconds
+[0m16:29:46.278681 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.states"
+[0m16:29:46.279355 [debug] [Thread-1 (]: On model.usawfl.states: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "node_id": "model.usawfl.states"} */
+
+  
+    
+    
+
+    create  table
+      memory."fct_references"."states__dbt_tmp"
+  
+    as (
+      select 'Alabama' as state, 'AL' as abbreviation
+union
+    select 'Alaska' as state, 'AK' as abbreviation
+union
+    select 'Arizona' as state, 'AZ' as abbreviation
+union
+    select 'Arkansas' as state, 'AR' as abbreviation
+union
+    select 'California' as state, 'CA' as abbreviation
+union
+    select 'Colorado' as state, 'CO' as abbreviation
+union
+    select 'Connecticut' as state, 'CT' as abbreviation
+union
+    select 'Delaware' as state, 'DE' as abbreviation
+union
+    select 'District of Columbia' as state, 'DC' as abbreviation
+union
+    select 'Florida' as state, 'FL' as abbreviation
+union
+    select 'Georgia' as state, 'GA' as abbreviation
+union
+    select 'Hawaii' as state, 'HI' as abbreviation
+union
+    select 'Idaho' as state, 'ID' as abbreviation
+union
+    select 'Illinois' as state, 'IL' as abbreviation
+union
+    select 'Indiana' as state, 'IN' as abbreviation
+union
+    select 'Iowa' as state, 'IA' as abbreviation
+union
+    select 'Kansas' as state, 'KS' as abbreviation
+union
+    select 'Kentucky' as state, 'KY' as abbreviation
+union
+    select 'Louisiana' as state, 'LA' as abbreviation
+union
+    select 'Maine' as state, 'ME' as abbreviation
+union
+    select 'Maryland' as state, 'MD' as abbreviation
+union
+    select 'Massachusetts' as state, 'MA' as abbreviation
+union
+    select 'Michigan' as state, 'MI' as abbreviation
+union
+    select 'Minnesota' as state, 'MN' as abbreviation
+union
+    select 'Mississippi' as state, 'MS' as abbreviation
+union
+    select 'Missouri' as state, 'MO' as abbreviation
+union
+    select 'Montana' as state, 'MT' as abbreviation
+union
+    select 'Nebraska' as state, 'NE' as abbreviation
+union
+    select 'Nevada' as state, 'NV' as abbreviation
+union
+    select 'New Hampshire' as state, 'NH' as abbreviation
+union
+    select 'New Jersey' as state, 'NJ' as abbreviation
+union
+    select 'New Mexico' as state, 'NM' as abbreviation
+union
+    select 'New York' as state, 'NY' as abbreviation
+union
+    select 'North Carolina' as state, 'NC' as abbreviation
+union
+    select 'North Dakota' as state, 'ND' as abbreviation
+union
+    select 'Ohio' as state, 'OH' as abbreviation
+union
+    select 'Oklahoma' as state, 'OK' as abbreviation
+union
+    select 'Oregon' as state, 'OR' as abbreviation
+union
+    select 'Pennsylvania' as state, 'PA' as abbreviation
+union
+    select 'Rhode Island' as state, 'RI' as abbreviation
+union
+    select 'South Carolina' as state, 'SC' as abbreviation
+union
+    select 'South Dakota' as state, 'SD' as abbreviation
+union
+    select 'Tennessee' as state, 'TN' as abbreviation
+union
+    select 'Texas' as state, 'TX' as abbreviation
+union
+    select 'Utah' as state, 'UT' as abbreviation
+union
+    select 'Vermont' as state, 'VT' as abbreviation
+union
+    select 'Virginia' as state, 'VA' as abbreviation
+union
+    select 'Washington' as state, 'WA' as abbreviation
+union
+    select 'West Virginia' as state, 'WV' as abbreviation
+union
+    select 'Wisconsin' as state, 'WI' as abbreviation
+union
+    select 'Wyoming' as state, 'WY' as abbreviation
+union
+    select 'Samoa' as state, 'AS' as abbreviation
+union
+    select 'Guam' as state, 'GU' as abbreviation
+union
+    select 'Puerto Rico' as state, 'PR' as abbreviation
+union
+    select 'Virgin Islands' as state, 'VI' as abbreviation
+    );
+  
+  
+[0m16:29:46.320044 [debug] [Thread-1 (]: SQL status: OK in 0.040 seconds
+[0m16:29:46.327412 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.states"
+[0m16:29:46.328025 [debug] [Thread-1 (]: On model.usawfl.states: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "node_id": "model.usawfl.states"} */
+alter table memory."fct_references"."states__dbt_tmp" rename to "states"
+[0m16:29:46.329037 [debug] [Thread-1 (]: SQL status: OK in 0.000 seconds
+[0m16:29:46.339987 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.states"
+[0m16:29:46.340538 [debug] [Thread-1 (]: On model.usawfl.states: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "node_id": "model.usawfl.states"} */
+
+        COPY (SELECT * FROM memory."fct_references"."states") TO '/Users/vongly/dev/freelance/MoveUnited/usawfl/test/duckdb_files/prod/fct_references/states/states.parquet' (FORMAT PARQUET, OVERWRITE)
+      
+[0m16:29:46.343596 [debug] [Thread-1 (]: SQL status: OK in 0.003 seconds
+[0m16:29:46.356988 [debug] [Thread-1 (]: On model.usawfl.states: COMMIT
+[0m16:29:46.357544 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.states"
+[0m16:29:46.357990 [debug] [Thread-1 (]: On model.usawfl.states: COMMIT
+[0m16:29:46.359407 [debug] [Thread-1 (]: SQL status: OK in 0.001 seconds
+[0m16:29:46.367657 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.states"
+[0m16:29:46.368296 [debug] [Thread-1 (]: On model.usawfl.states: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "node_id": "model.usawfl.states"} */
+
+      drop table if exists memory."fct_references"."states__dbt_backup" cascade
+    
+[0m16:29:46.369377 [debug] [Thread-1 (]: SQL status: OK in 0.001 seconds
+[0m16:29:46.372694 [debug] [Thread-1 (]: On model.usawfl.states: Close
+[0m16:29:46.375052 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'ef85d04e-8310-44c8-a59d-5770ad4d96ec', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10f31bcb0>]}
+[0m16:29:46.376023 [info ] [Thread-1 (]: 1 of 7 OK created sql table model fct_references.states ........................ [[32mOK[0m in 0.16s]
+[0m16:29:46.377029 [debug] [Thread-1 (]: Finished running node model.usawfl.states
+[0m16:29:46.377626 [debug] [Thread-1 (]: Began running node model.usawfl.tournaments
+[0m16:29:46.378543 [info ] [Thread-1 (]: 2 of 7 START sql table model fct_salesforce.tournaments ........................ [RUN]
+[0m16:29:46.379530 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.usawfl.states, now model.usawfl.tournaments)
+[0m16:29:46.380159 [debug] [Thread-1 (]: Began compiling node model.usawfl.tournaments
+[0m16:29:46.385310 [debug] [Thread-1 (]: Writing injected SQL for node "model.usawfl.tournaments"
+[0m16:29:46.386412 [debug] [Thread-1 (]: Began executing node model.usawfl.tournaments
+[0m16:29:46.391678 [debug] [Thread-1 (]: Writing runtime sql for node "model.usawfl.tournaments"
+[0m16:29:46.393691 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.tournaments"
+[0m16:29:46.394242 [debug] [Thread-1 (]: On model.usawfl.tournaments: BEGIN
+[0m16:29:46.394884 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m16:29:46.397401 [debug] [Thread-1 (]: SQL status: OK in 0.002 seconds
+[0m16:29:46.398129 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.tournaments"
+[0m16:29:46.399557 [debug] [Thread-1 (]: On model.usawfl.tournaments: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "node_id": "model.usawfl.tournaments"} */
+
+  
+    
+    
+
+    create  table
+      memory."fct_salesforce"."tournaments__dbt_tmp"
+  
+    as (
+      with stage as (
+    select
+        id,
+        nullif(owner_id, '') as owner_id,
+        nullif(year__c, '') as season,
+        nullif(name, '') as tournament_name,
+        split(location__c,', ')[1] as city,
+        split(location__c,', ')[2] as state,
+        cast(
+            strptime(year__c || ' ' || 
+    split(
+        replace(
+            regexp_replace(
+                replace(
+                    replace(dates__c, ' and ', ' '),
+                    '-',
+                    ' '
+                ),
+                '([0-9])(st|nd|rd|th)',
+                '\\\1',
+                'gi'
+            ),
+            '\',
+            ''
+        ),
+        ' '
+    )
+[1] || ' ' || 
+    split(
+        replace(
+            regexp_replace(
+                replace(
+                    replace(dates__c, ' and ', ' '),
+                    '-',
+                    ' '
+                ),
+                '([0-9])(st|nd|rd|th)',
+                '\\\1',
+                'gi'
+            ),
+            '\',
+            ''
+        ),
+        ' '
+    )
+[2], '%Y %B %d' )::date
+            as varchar
+        ) as start_date,
+        cast(
+            strptime(year__c || ' ' || 
+    split(
+        replace(
+            regexp_replace(
+                replace(
+                    replace(dates__c, ' and ', ' '),
+                    '-',
+                    ' '
+                ),
+                '([0-9])(st|nd|rd|th)',
+                '\\\1',
+                'gi'
+            ),
+            '\',
+            ''
+        ),
+        ' '
+    )
+[1] || ' ' || 
+    split(
+        replace(
+            regexp_replace(
+                replace(
+                    replace(dates__c, ' and ', ' '),
+                    '-',
+                    ' '
+                ),
+                '([0-9])(st|nd|rd|th)',
+                '\\\1',
+                'gi'
+            ),
+            '\',
+            ''
+        ),
+        ' '
+    )
+[3], '%Y %B %d' )::date
+            as varchar
+        ) as end_date,
+        cast(is_deleted as boolean) as is_deleted,
+        cast(created_date as timestamp) as created,
+        cast(_dlt_processed_utc as timestamp) as processed,
+        cast(system_modstamp as timestamp) as updated,
+        row_number() over(partition by id order by system_modstamp desc) as updated_order
+    from
+        's3://move-united/usawfl_salesforce_to_s3_file/raw_salesforce/usawfl_tournaments__c/*.parquet'
+    where
+        lower(is_deleted) = 'false'
+)
+
+select
+    id,
+    owner_id,
+    season,
+    tournament_name,
+    city,
+    state,
+    start_date,
+    end_date,
+    created,
+    processed,
+    updated
+from
+    stage
+where
+    updated_order = 1
+    );
+  
+  
+[0m16:29:46.884574 [debug] [Thread-1 (]: SQL status: OK in 0.483 seconds
+[0m16:29:46.887984 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.tournaments"
+[0m16:29:46.888453 [debug] [Thread-1 (]: On model.usawfl.tournaments: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "node_id": "model.usawfl.tournaments"} */
+alter table memory."fct_salesforce"."tournaments__dbt_tmp" rename to "tournaments"
+[0m16:29:46.889350 [debug] [Thread-1 (]: SQL status: OK in 0.000 seconds
+[0m16:29:46.894302 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.tournaments"
+[0m16:29:46.894790 [debug] [Thread-1 (]: On model.usawfl.tournaments: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "node_id": "model.usawfl.tournaments"} */
+
+        COPY (SELECT * FROM memory."fct_salesforce"."tournaments") TO '/Users/vongly/dev/freelance/MoveUnited/usawfl/test/duckdb_files/prod/fct_salesforce/tournaments/tournaments.parquet' (FORMAT PARQUET, OVERWRITE)
+      
+[0m16:29:46.897257 [debug] [Thread-1 (]: SQL status: OK in 0.002 seconds
+[0m16:29:46.898708 [debug] [Thread-1 (]: On model.usawfl.tournaments: COMMIT
+[0m16:29:46.899471 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.tournaments"
+[0m16:29:46.900001 [debug] [Thread-1 (]: On model.usawfl.tournaments: COMMIT
+[0m16:29:46.900974 [debug] [Thread-1 (]: SQL status: OK in 0.001 seconds
+[0m16:29:46.905233 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.tournaments"
+[0m16:29:46.905758 [debug] [Thread-1 (]: On model.usawfl.tournaments: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "node_id": "model.usawfl.tournaments"} */
+
+      drop table if exists memory."fct_salesforce"."tournaments__dbt_backup" cascade
+    
+[0m16:29:46.906587 [debug] [Thread-1 (]: SQL status: OK in 0.000 seconds
+[0m16:29:46.908772 [debug] [Thread-1 (]: On model.usawfl.tournaments: Close
+[0m16:29:46.909574 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'ef85d04e-8310-44c8-a59d-5770ad4d96ec', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10f533e00>]}
+[0m16:29:46.910389 [info ] [Thread-1 (]: 2 of 7 OK created sql table model fct_salesforce.tournaments ................... [[32mOK[0m in 0.53s]
+[0m16:29:46.911122 [debug] [Thread-1 (]: Finished running node model.usawfl.tournaments
+[0m16:29:46.911617 [debug] [Thread-1 (]: Began running node model.usawfl.contacts
+[0m16:29:46.912175 [info ] [Thread-1 (]: 3 of 7 START sql table model fct_salesforce.contacts ........................... [RUN]
+[0m16:29:46.912736 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.usawfl.tournaments, now model.usawfl.contacts)
+[0m16:29:46.913197 [debug] [Thread-1 (]: Began compiling node model.usawfl.contacts
+[0m16:29:46.921188 [debug] [Thread-1 (]: Writing injected SQL for node "model.usawfl.contacts"
+[0m16:29:46.922487 [debug] [Thread-1 (]: Began executing node model.usawfl.contacts
+[0m16:29:46.926012 [debug] [Thread-1 (]: Writing runtime sql for node "model.usawfl.contacts"
+[0m16:29:46.927056 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.contacts"
+[0m16:29:46.927573 [debug] [Thread-1 (]: On model.usawfl.contacts: BEGIN
+[0m16:29:46.928014 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m16:29:46.929827 [debug] [Thread-1 (]: SQL status: OK in 0.002 seconds
+[0m16:29:46.930301 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.contacts"
+[0m16:29:46.931039 [debug] [Thread-1 (]: On model.usawfl.contacts: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "node_id": "model.usawfl.contacts"} */
+
+  
+    
+    
+
+    create  table
+      memory."fct_salesforce"."contacts__dbt_tmp"
+  
+    as (
+      with stage as (
+    select
+        c.id,
+        nullif(
+    case
+        when lower(left(c.last_name, 2)) = 'mc'
+        then concat(
+                upper(substring(c.last_name, 1, 1)),
+                lower(substring(c.last_name, 2, 1)),
+                upper(substring(c.last_name, 3, 1)),
+                lower(substring(c.last_name, 4, length(c.last_name)))
+            )
+        else concat(
+                upper(substring(c.last_name, 1, 1)),
+                lower(substring(c.last_name, 2, length(c.last_name)))
+            )
+        end
+, '') as last_name,
+        nullif(
+    case
+        when lower(left(c.first_name, 2)) = 'mc'
+        then concat(
+                upper(substring(c.first_name, 1, 1)),
+                lower(substring(c.first_name, 2, 1)),
+                upper(substring(c.first_name, 3, 1)),
+                lower(substring(c.first_name, 4, length(c.first_name)))
+            )
+        else concat(
+                upper(substring(c.first_name, 1, 1)),
+                lower(substring(c.first_name, 2, length(c.first_name)))
+            )
+        end
+, '') as first_name,
+        nullif(c.birthdate, '') as birthdate,
+        nullif(
+    right(regexp_replace(cast(c.phone as varchar), '[^0-9]', '', 'g'), 10)
+, '') as phone,
+        nullif(
+    right(regexp_replace(cast(c.mobile_phone as varchar), '[^0-9]', '', 'g'), 10)
+, '') as mobile_phone,
+        nullif(
+    right(regexp_replace(cast(c.home_phone as varchar), '[^0-9]', '', 'g'), 10)
+, '') as home_phone,
+        nullif(
+    right(regexp_replace(cast(c.work_phone__c as varchar), '[^0-9]', '', 'g'), 10)
+, '') as work_phone,
+        nullif(c.email, '') as email,
+        nullif(c.mailing_street, '') as street,
+        nullif(c.mailing_city, '') as city,
+        coalesce(sa.abbreviation, ss.abbreviation, nullif(c.mailing_state, '')) as state,
+        nullif(
+    right(regexp_replace(cast(c.mailing_postal_code as varchar), '[^0-9]', '', 'g'), 10)
+, '') as postal_code,
+        nullif(c.mailing_country, '') as country,
+        nullif(c.family_contact_name__c, '') as family_contact,
+        nullif(c.family_contact_phone__c, '') as family_contact_phone,
+        case
+            when c.warfighter__c = true
+                or c.warfighter_pre_2001_veteran__c = true 
+                or c.warfighter_post_2001_veteran__c = true 
+            then true
+            else false
+            end as warfighter,
+        nullif(c.shirt_size__c, '') as shirt_size,
+        cast(c.is_deleted as boolean) as is_deleted,
+        cast(c.created_date as timestamp) as created,
+        cast(c._dlt_processed_utc as timestamp) as processed,
+        cast(c.system_modstamp as timestamp) as updated,
+        row_number() over(partition by c.id order by c.system_modstamp desc) as updated_order
+    from
+        read_parquet('s3://move-united/usawfl_salesforce_to_s3_file/raw_salesforce/contact/*.parquet') c
+
+    left join
+        memory."fct_references"."states" sa
+    on
+        lower(
+    regexp_replace(c.mailing_state, '[\.`]', '', 'g')
+) = lower(sa.abbreviation)
+
+    left join
+        memory."fct_references"."states" ss
+    on
+        lower(
+    regexp_replace(c.mailing_state, '[\.`]', '', 'g')
+) = lower(ss.state)
+
+    where
+        lower(c.is_deleted) = 'false'
+)
+
+select
+    id,
+    last_name,
+    first_name,
+    birthdate,
+    
+    if(
+        cast(phone as varchar) is null,
+        null,
+        '(' || substring(cast(phone as varchar) from 1 for 3) || ') ' || substring(cast(phone as varchar) from 3 for 3) || '-' || substring(cast(phone as varchar) from 7 for 4)
+    )
+ as phone,
+    
+    if(
+        cast(mobile_phone as varchar) is null,
+        null,
+        '(' || substring(cast(mobile_phone as varchar) from 1 for 3) || ') ' || substring(cast(mobile_phone as varchar) from 3 for 3) || '-' || substring(cast(mobile_phone as varchar) from 7 for 4)
+    )
+ as mobile_phone,
+    
+    if(
+        cast(home_phone as varchar) is null,
+        null,
+        '(' || substring(cast(home_phone as varchar) from 1 for 3) || ') ' || substring(cast(home_phone as varchar) from 3 for 3) || '-' || substring(cast(home_phone as varchar) from 7 for 4)
+    )
+ as home_phone,
+    
+    if(
+        cast(work_phone as varchar) is null,
+        null,
+        '(' || substring(cast(work_phone as varchar) from 1 for 3) || ') ' || substring(cast(work_phone as varchar) from 3 for 3) || '-' || substring(cast(work_phone as varchar) from 7 for 4)
+    )
+ as work_phone,
+    email,
+    street,
+    city,
+    
+    case
+        when right(state, 4) = ', UK'
+        then replace(state, ', UK', '')
+        when right(state, 3) = '/UK'
+        then replace(state, '/UK', '')
+        when right(state, 8) = ', Canada'
+        then replace(state, ', Canada', '')
+        when state in ('SÃ£o Paulo', 'São Paulo')
+        then 'Sao Paulo'
+        else state
+        end
+ as state,
+    
+    case
+        when length(cast(postal_code as varchar)) = 5
+        then cast(postal_code as varchar)
+        when length(cast(postal_code as varchar)) < 5
+        then right('0000' || cast(postal_code as varchar), 5)
+        when length(cast(postal_code as varchar)) > 5
+        then left(right('0000' || cast(postal_code as varchar), 9), 5)
+        end
+ as postal_code,
+    
+    case
+        when replace(lower(country), '.', '') in ('united states of america', 'united states', 'usa', 'us', 'usaa')
+        then 'United States'
+        when lower(country) = 'uk'
+        then 'United Kingdom'
+        when right(state, 4) = ', UK'
+        then 'United Kingdom'
+        when right(state, 3) = '/UK'
+        then 'United Kingdom'
+        when right(state, 8) = ', Canada'
+        then 'Canada'
+        when lower(country) = 'can'
+        then 'Canada'
+        when lower(country) = 'mex'
+        then 'Mexico'
+        when lower(country) = 'per'
+        then 'Peru'
+        when lower(country) in ('france', 'fra')
+        then 'France'
+        when state in ('SÃ£o Paulo', 'São Paulo')
+        then 'Brazil'
+        else country
+        end
+ as country,
+    family_contact,
+    family_contact_phone,
+    warfighter,
+    shirt_size,
+    created,
+    processed,
+    updated
+from
+    stage
+where
+    updated_order = 1
+    );
+  
+  
+[0m16:29:52.757043 [debug] [Thread-1 (]: SQL status: OK in 5.825 seconds
+[0m16:29:52.760438 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.contacts"
+[0m16:29:52.760918 [debug] [Thread-1 (]: On model.usawfl.contacts: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "node_id": "model.usawfl.contacts"} */
+alter table memory."fct_salesforce"."contacts__dbt_tmp" rename to "contacts"
+[0m16:29:52.761775 [debug] [Thread-1 (]: SQL status: OK in 0.000 seconds
+[0m16:29:52.766491 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.contacts"
+[0m16:29:52.766984 [debug] [Thread-1 (]: On model.usawfl.contacts: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "node_id": "model.usawfl.contacts"} */
+
+        COPY (SELECT * FROM memory."fct_salesforce"."contacts") TO '/Users/vongly/dev/freelance/MoveUnited/usawfl/test/duckdb_files/prod/fct_salesforce/contacts/contacts.parquet' (FORMAT PARQUET, OVERWRITE)
+      
+[0m16:29:52.928520 [debug] [Thread-1 (]: SQL status: OK in 0.161 seconds
+[0m16:29:52.929981 [debug] [Thread-1 (]: On model.usawfl.contacts: COMMIT
+[0m16:29:52.930458 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.contacts"
+[0m16:29:52.930890 [debug] [Thread-1 (]: On model.usawfl.contacts: COMMIT
+[0m16:29:52.936486 [debug] [Thread-1 (]: SQL status: OK in 0.005 seconds
+[0m16:29:52.939759 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.contacts"
+[0m16:29:52.940393 [debug] [Thread-1 (]: On model.usawfl.contacts: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "node_id": "model.usawfl.contacts"} */
+
+      drop table if exists memory."fct_salesforce"."contacts__dbt_backup" cascade
+    
+[0m16:29:52.941306 [debug] [Thread-1 (]: SQL status: OK in 0.000 seconds
+[0m16:29:52.942897 [debug] [Thread-1 (]: On model.usawfl.contacts: Close
+[0m16:29:52.943584 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'ef85d04e-8310-44c8-a59d-5770ad4d96ec', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10f41b9b0>]}
+[0m16:29:52.944303 [info ] [Thread-1 (]: 3 of 7 OK created sql table model fct_salesforce.contacts ...................... [[32mOK[0m in 6.03s]
+[0m16:29:52.945002 [debug] [Thread-1 (]: Finished running node model.usawfl.contacts
+[0m16:29:52.945916 [debug] [Thread-1 (]: Began running node model.usawfl.officials
+[0m16:29:52.946638 [info ] [Thread-1 (]: 4 of 7 START sql table model fct_salesforce.officials .......................... [RUN]
+[0m16:29:52.947228 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.usawfl.contacts, now model.usawfl.officials)
+[0m16:29:52.947692 [debug] [Thread-1 (]: Began compiling node model.usawfl.officials
+[0m16:29:52.953652 [debug] [Thread-1 (]: Writing injected SQL for node "model.usawfl.officials"
+[0m16:29:52.955140 [debug] [Thread-1 (]: Began executing node model.usawfl.officials
+[0m16:29:52.959118 [debug] [Thread-1 (]: Writing runtime sql for node "model.usawfl.officials"
+[0m16:29:52.960211 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.officials"
+[0m16:29:52.960777 [debug] [Thread-1 (]: On model.usawfl.officials: BEGIN
+[0m16:29:52.961274 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m16:29:52.963166 [debug] [Thread-1 (]: SQL status: OK in 0.002 seconds
+[0m16:29:52.963746 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.officials"
+[0m16:29:52.964429 [debug] [Thread-1 (]: On model.usawfl.officials: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "node_id": "model.usawfl.officials"} */
+
+  
+    
+    
+
+    create  table
+      memory."fct_salesforce"."officials__dbt_tmp"
+  
+    as (
+      with official_links_stage as (
+    select
+        ol.official__c as official_id,
+        cast(ol.is_deleted as boolean) as is_deleted,
+        nullif(t.tournament_name, '') as tournament_name,
+        nullif(ol.games_officiated__c, '') as games_officiated,
+        nullif(ol.days_assigned__c, '') as days_assigned,
+        row_number() over(partition by ol.id order by ol.system_modstamp desc) as updated_order
+    from 
+        's3://move-united/usawfl_salesforce_to_s3_file/raw_salesforce/usawfl_official_link__c/*.parquet' ol
+    left join
+        memory."fct_salesforce"."tournaments" t
+    on
+        ol.usawfl_tournament__c = t.id
+    where
+        ol.is_deleted = false
+
+),
+
+official_links as (
+    select
+        official_id,
+        json_group_array(
+            json_object(
+                'tournament_name', tournament_name,
+                'games_officiated', games_officiated,
+                'days_assigned', days_assigned
+            )
+        ) as tournament_officiated_details
+    from
+        official_links_stage
+    where
+        updated_order = 1
+    group by
+        1
+),
+
+officials_stage as (
+    select
+        o.id,
+        nullif(o.name, '') as name,
+        nullif(o.type_of_official__c, '') as type,
+        o.status__c as status,
+        string_split(
+            replace(replace(o.field_position_preferences__c, ';', '|'), '/', '|'),
+            '|'
+        ) as preference,
+        nullif(o.type_of_official_details__c, '') as details,
+        nullif(o.safe_sport_course_completed__c, '') as safe_sport_course_completed,
+        nullif(o.safe_sport_certificate_expires__c, '') as safe_sport_certificate_expires,
+        nullif(o.background_check_determination__c, '') as background_check_determination,
+        nullif(o.background_check_expires__c, '') as background_check_expires,
+        nullif(o.usawfl_rules_exam_pass_date__c, '') as usawfl_rules_exam_pass_date,
+        cast(o.is_deleted as boolean) as is_deleted,
+        if(c.id is null, false, true) as has_contact,
+        nullif(c.first_name, '') as first_name,
+        nullif(c.last_name, '') as last_name,
+        nullif(c.phone, '') as phone,
+        nullif(c.mobile_phone, '') as mobile_phone,
+        nullif(c.home_phone, '') as home_phone,
+        nullif(c.work_phone, '') as work_phone,
+        nullif(c.email, '') as email,
+        nullif(c.street, '') as street,
+        nullif(c.city, '') as city,
+        nullif(c.state, '') as state,
+        nullif(c.postal_code, '') as postal_code,
+        nullif(c.country, '') as country,
+--        nullif(ol.tournament_officiated_details, '') as tournament_officiated_details,
+        cast(o.created_date as timestamp) as created,
+        cast(o._dlt_processed_utc as timestamp) as processed,
+        cast(o.system_modstamp as timestamp) as updated,
+        row_number() over(partition by o.id order by o.system_modstamp desc) as updated_order,
+        row_number() over(partition by o.contact__c order by o.system_modstamp desc) as contact_updated_order,
+    from
+        's3://move-united/usawfl_salesforce_to_s3_file/raw_salesforce/usawfl_officials__c/*.parquet' o
+
+    left join
+        memory."fct_salesforce"."contacts" c
+    on
+        o.contact__c = c.id
+
+    left join
+        official_links ol
+    on
+        o.id = ol.official_id
+
+    where
+        lower(o.is_deleted) = 'false'
+        and o.name != 'Test Official'
+)
+
+
+select
+    id,
+    name,
+    type,
+    status,
+    preference,
+    details,
+    has_contact,
+    first_name,
+    last_name,        
+    phone,
+    mobile_phone,
+    home_phone,
+    work_phone,
+    email,
+    street,
+    city,
+    state,
+    postal_code,
+    country,
+    safe_sport_course_completed,
+    safe_sport_certificate_expires,
+    background_check_determination,
+    background_check_expires,
+    usawfl_rules_exam_pass_date,
+--    tournament_officiated_details
+    created,
+    processed,
+    updated
+from
+    officials_stage
+where
+    updated_order = 1
+    and contact_updated_order = 1
+    );
+  
+  
+[0m16:29:53.889147 [debug] [Thread-1 (]: SQL status: OK in 0.924 seconds
+[0m16:29:53.895864 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.officials"
+[0m16:29:53.896738 [debug] [Thread-1 (]: On model.usawfl.officials: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "node_id": "model.usawfl.officials"} */
+alter table memory."fct_salesforce"."officials__dbt_tmp" rename to "officials"
+[0m16:29:53.898122 [debug] [Thread-1 (]: SQL status: OK in 0.001 seconds
+[0m16:29:53.907152 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.officials"
+[0m16:29:53.907786 [debug] [Thread-1 (]: On model.usawfl.officials: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "node_id": "model.usawfl.officials"} */
+
+        COPY (SELECT * FROM memory."fct_salesforce"."officials") TO '/Users/vongly/dev/freelance/MoveUnited/usawfl/test/duckdb_files/prod/fct_salesforce/officials/officials.parquet' (FORMAT PARQUET, OVERWRITE)
+      
+[0m16:29:53.913135 [debug] [Thread-1 (]: SQL status: OK in 0.004 seconds
+[0m16:29:53.915029 [debug] [Thread-1 (]: On model.usawfl.officials: COMMIT
+[0m16:29:53.915676 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.officials"
+[0m16:29:53.916815 [debug] [Thread-1 (]: On model.usawfl.officials: COMMIT
+[0m16:29:53.919809 [debug] [Thread-1 (]: SQL status: OK in 0.002 seconds
+[0m16:29:53.927900 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.officials"
+[0m16:29:53.929119 [debug] [Thread-1 (]: On model.usawfl.officials: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "node_id": "model.usawfl.officials"} */
+
+      drop table if exists memory."fct_salesforce"."officials__dbt_backup" cascade
+    
+[0m16:29:53.930621 [debug] [Thread-1 (]: SQL status: OK in 0.001 seconds
+[0m16:29:53.933569 [debug] [Thread-1 (]: On model.usawfl.officials: Close
+[0m16:29:53.935422 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'ef85d04e-8310-44c8-a59d-5770ad4d96ec', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10f53ea80>]}
+[0m16:29:53.937467 [info ] [Thread-1 (]: 4 of 7 OK created sql table model fct_salesforce.officials ..................... [[32mOK[0m in 0.99s]
+[0m16:29:53.938757 [debug] [Thread-1 (]: Finished running node model.usawfl.officials
+[0m16:29:53.939592 [debug] [Thread-1 (]: Began running node model.usawfl.teams
+[0m16:29:53.940790 [info ] [Thread-1 (]: 5 of 7 START sql table model fct_salesforce.teams .............................. [RUN]
+[0m16:29:53.941564 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.usawfl.officials, now model.usawfl.teams)
+[0m16:29:53.942404 [debug] [Thread-1 (]: Began compiling node model.usawfl.teams
+[0m16:29:53.946975 [debug] [Thread-1 (]: Writing injected SQL for node "model.usawfl.teams"
+[0m16:29:53.948144 [debug] [Thread-1 (]: Began executing node model.usawfl.teams
+[0m16:29:53.955260 [debug] [Thread-1 (]: Writing runtime sql for node "model.usawfl.teams"
+[0m16:29:53.957525 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.teams"
+[0m16:29:53.959691 [debug] [Thread-1 (]: On model.usawfl.teams: BEGIN
+[0m16:29:53.961015 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m16:29:53.964928 [debug] [Thread-1 (]: SQL status: OK in 0.004 seconds
+[0m16:29:53.966229 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.teams"
+[0m16:29:53.967587 [debug] [Thread-1 (]: On model.usawfl.teams: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "node_id": "model.usawfl.teams"} */
+
+  
+    
+    
+
+    create  table
+      memory."fct_salesforce"."teams__dbt_tmp"
+  
+    as (
+      with stage as (
+    select
+        t.id,
+        nullif(t.name, '') as team_name,
+        cast(t.is_deleted as boolean) as is_deleted,
+        if(c1.id is null, false, true) as has_primary_contact,
+        nullif(c1.first_name, '') as primary_contact_first_name,
+        nullif(c1.last_name, '') as primary_contact_last_name,
+        nullif(c1.phone, '') as primary_contact_phone,
+        nullif(c1.mobile_phone, '') as primary_contact_mobile_phone,
+        nullif(c1.home_phone, '') as primary_contact_home_phone,
+        nullif(c1.work_phone, '') as primary_contact_work_phone,
+        nullif(c1.email, '') as primary_contact_email,
+        nullif(c1.street, '') as primary_contact_street,
+        nullif(c1.city, '') as primary_contact_city,
+        nullif(c1.state, '') as primary_contact_state,
+        nullif(c1.postal_code, '') as primary_contact_postal_code,
+        nullif(c1.country, '') as primary_contact_country,
+        cast(t.created_date as timestamp) as created,
+        cast(t._dlt_processed_utc as timestamp) as processed,
+        cast(t.system_modstamp as timestamp) as updated,
+        row_number() over(partition by t.id order by t.system_modstamp desc) as updated_order,
+    from
+        's3://move-united/usawfl_salesforce_to_s3_file/raw_salesforce/usawfl_team__c/*.parquet' t
+
+    left join
+        memory."fct_salesforce"."contacts" c1
+    on
+        t.primary_contact__c = c1.id
+)
+
+select
+    id,
+    team_name,
+    has_primary_contact,
+    primary_contact_first_name,
+    primary_contact_last_name,        
+    primary_contact_phone,
+    primary_contact_mobile_phone,
+    primary_contact_home_phone,
+    primary_contact_work_phone,
+    primary_contact_email,
+    primary_contact_street,
+    primary_contact_city,
+    primary_contact_state,
+    primary_contact_postal_code,
+    primary_contact_country,
+    created,
+    processed,
+    updated
+from
+    stage
+where
+    updated_order = 1
+    );
+  
+  
+[0m16:29:54.445323 [debug] [Thread-1 (]: SQL status: OK in 0.477 seconds
+[0m16:29:54.453059 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.teams"
+[0m16:29:54.453785 [debug] [Thread-1 (]: On model.usawfl.teams: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "node_id": "model.usawfl.teams"} */
+alter table memory."fct_salesforce"."teams__dbt_tmp" rename to "teams"
+[0m16:29:54.454836 [debug] [Thread-1 (]: SQL status: OK in 0.000 seconds
+[0m16:29:54.460955 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.teams"
+[0m16:29:54.461652 [debug] [Thread-1 (]: On model.usawfl.teams: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "node_id": "model.usawfl.teams"} */
+
+        COPY (SELECT * FROM memory."fct_salesforce"."teams") TO '/Users/vongly/dev/freelance/MoveUnited/usawfl/test/duckdb_files/prod/fct_salesforce/teams/teams.parquet' (FORMAT PARQUET, OVERWRITE)
+      
+[0m16:29:54.465179 [debug] [Thread-1 (]: SQL status: OK in 0.003 seconds
+[0m16:29:54.467212 [debug] [Thread-1 (]: On model.usawfl.teams: COMMIT
+[0m16:29:54.467806 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.teams"
+[0m16:29:54.468279 [debug] [Thread-1 (]: On model.usawfl.teams: COMMIT
+[0m16:29:54.469595 [debug] [Thread-1 (]: SQL status: OK in 0.001 seconds
+[0m16:29:54.472757 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.teams"
+[0m16:29:54.473339 [debug] [Thread-1 (]: On model.usawfl.teams: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "node_id": "model.usawfl.teams"} */
+
+      drop table if exists memory."fct_salesforce"."teams__dbt_backup" cascade
+    
+[0m16:29:54.474589 [debug] [Thread-1 (]: SQL status: OK in 0.000 seconds
+[0m16:29:54.477889 [debug] [Thread-1 (]: On model.usawfl.teams: Close
+[0m16:29:54.479012 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'ef85d04e-8310-44c8-a59d-5770ad4d96ec', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10f594b00>]}
+[0m16:29:54.480007 [info ] [Thread-1 (]: 5 of 7 OK created sql table model fct_salesforce.teams ......................... [[32mOK[0m in 0.54s]
+[0m16:29:54.480987 [debug] [Thread-1 (]: Finished running node model.usawfl.teams
+[0m16:29:54.481951 [debug] [Thread-1 (]: Began running node model.usawfl.members
+[0m16:29:54.482598 [info ] [Thread-1 (]: 6 of 7 START sql table model fct_salesforce.members ............................ [RUN]
+[0m16:29:54.483242 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.usawfl.teams, now model.usawfl.members)
+[0m16:29:54.483882 [debug] [Thread-1 (]: Began compiling node model.usawfl.members
+[0m16:29:54.489959 [debug] [Thread-1 (]: Writing injected SQL for node "model.usawfl.members"
+[0m16:29:54.491776 [debug] [Thread-1 (]: Began executing node model.usawfl.members
+[0m16:29:54.496029 [debug] [Thread-1 (]: Writing runtime sql for node "model.usawfl.members"
+[0m16:29:54.497352 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.members"
+[0m16:29:54.498112 [debug] [Thread-1 (]: On model.usawfl.members: BEGIN
+[0m16:29:54.498956 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m16:29:54.500924 [debug] [Thread-1 (]: SQL status: OK in 0.002 seconds
+[0m16:29:54.501478 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.members"
+[0m16:29:54.502129 [debug] [Thread-1 (]: On model.usawfl.members: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "node_id": "model.usawfl.members"} */
+
+  
+    
+    
+
+    create  table
+      memory."fct_salesforce"."members__dbt_tmp"
+  
+    as (
+      with stage as (
+    select
+        m.id,
+        nullif(m.name, '') as name,
+        nullif(t.team_name, '') as team_name,
+        nullif(m.contact_type__c, '') as contact_type,
+        nullif(m.contact_subtype__c, '') as contact_subtype,
+        nullif(m.type__c, '') as type,
+        nullif(m.status__c, '') as status,
+        cast(nullif(m.classification_proposed__c, '') as int) as classification_proposed,
+        cast(nullif(m.classification_proposed_year__c, '') as int) as classification_proposed_year,
+        cast(nullif(m.classification_confirmed__c, '') as int) as classification,
+        nullif(m.classification_status_final__c, '') as classification_status,
+        nullif(m.classification_confirmed_tournament__c, '') as classification_updated_at,
+        nullif(m.classification_medical_team__c, '') as classifiers,
+        nullif(m.safe_sport_certified__c, '') as safe_sport_certified,
+        nullif(m.rules_exam_passed__c, '') as rules_exam_passed,
+        cast(m.is_deleted as boolean) as is_deleted,
+        if(c.id is null, false, true) as has_contact,
+        nullif(c.first_name, '') as first_name,
+        nullif(c.last_name, '') as last_name,
+        nullif(c.phone, '') as phone,
+        nullif(c.mobile_phone, '') as mobile_phone,
+        nullif(c.home_phone, '') as home_phone,
+        nullif(c.work_phone, '') as work_phone,
+        nullif(c.email, '') as email,
+        nullif(c.street, '') as street,
+        nullif(c.city, '') as city,
+        nullif(c.state, '') as state,
+        cast(nullif(c.postal_code, '') as varchar) as postal_code,
+        nullif(c.country, '') as country,
+        cast(m.created_date as timestamp) as created,
+        cast(m._dlt_processed_utc as timestamp) as processed,
+        cast(m.system_modstamp as timestamp) as updated,
+        row_number() over(partition by m.id order by m.system_modstamp desc) as updated_order,
+        row_number() over(partition by m.contact__c order by m.system_modstamp desc) as contact_updated_order
+    from
+        's3://move-united/usawfl_salesforce_to_s3_file/raw_salesforce/usawfl__c/*.parquet' m
+
+    left join
+        memory."fct_salesforce"."contacts" c
+    on
+        m.contact__c = c.id
+
+    left join
+        memory."fct_salesforce"."teams" t
+    on
+        m.team__c = t.id
+
+    where
+        lower(m.is_deleted) = 'false'
+)
+
+select
+    id,
+    name,
+    team_name,
+    contact_type,
+    contact_subtype,
+    type,
+    status,
+    classification_proposed,
+    classification_proposed_year,
+    classification,
+    classification_status,
+    classification_updated_at,
+    classifiers,
+    safe_sport_certified,
+    rules_exam_passed,
+    has_contact,
+    first_name,
+    last_name,        
+    phone,
+    mobile_phone,
+    home_phone,
+    work_phone,
+    email,
+    street,
+    city,
+    state,
+    postal_code,
+    country,
+    created,
+    processed,
+    updated
+from
+    stage
+where
+    updated_order = 1
+    and contact_updated_order = 1
+    );
+  
+  
+[0m16:29:56.228988 [debug] [Thread-1 (]: SQL status: OK in 1.726 seconds
+[0m16:29:56.233164 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.members"
+[0m16:29:56.233779 [debug] [Thread-1 (]: On model.usawfl.members: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "node_id": "model.usawfl.members"} */
+alter table memory."fct_salesforce"."members__dbt_tmp" rename to "members"
+[0m16:29:56.234781 [debug] [Thread-1 (]: SQL status: OK in 0.000 seconds
+[0m16:29:56.240459 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.members"
+[0m16:29:56.241189 [debug] [Thread-1 (]: On model.usawfl.members: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "node_id": "model.usawfl.members"} */
+
+        COPY (SELECT * FROM memory."fct_salesforce"."members") TO '/Users/vongly/dev/freelance/MoveUnited/usawfl/test/duckdb_files/prod/fct_salesforce/members/members.parquet' (FORMAT PARQUET, OVERWRITE)
+      
+[0m16:29:56.247112 [debug] [Thread-1 (]: SQL status: OK in 0.005 seconds
+[0m16:29:56.248871 [debug] [Thread-1 (]: On model.usawfl.members: COMMIT
+[0m16:29:56.249452 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.members"
+[0m16:29:56.249921 [debug] [Thread-1 (]: On model.usawfl.members: COMMIT
+[0m16:29:56.252041 [debug] [Thread-1 (]: SQL status: OK in 0.002 seconds
+[0m16:29:56.256540 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.members"
+[0m16:29:56.257244 [debug] [Thread-1 (]: On model.usawfl.members: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "node_id": "model.usawfl.members"} */
+
+      drop table if exists memory."fct_salesforce"."members__dbt_backup" cascade
+    
+[0m16:29:56.258464 [debug] [Thread-1 (]: SQL status: OK in 0.000 seconds
+[0m16:29:56.260883 [debug] [Thread-1 (]: On model.usawfl.members: Close
+[0m16:29:56.261820 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'ef85d04e-8310-44c8-a59d-5770ad4d96ec', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10f594fe0>]}
+[0m16:29:56.262778 [info ] [Thread-1 (]: 6 of 7 OK created sql table model fct_salesforce.members ....................... [[32mOK[0m in 1.78s]
+[0m16:29:56.264042 [debug] [Thread-1 (]: Finished running node model.usawfl.members
+[0m16:29:56.264668 [debug] [Thread-1 (]: Began running node model.usawfl.stats
+[0m16:29:56.265302 [info ] [Thread-1 (]: 7 of 7 START sql table model fct_salesforce.stats .............................. [RUN]
+[0m16:29:56.265992 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.usawfl.members, now model.usawfl.stats)
+[0m16:29:56.266671 [debug] [Thread-1 (]: Began compiling node model.usawfl.stats
+[0m16:29:56.273635 [debug] [Thread-1 (]: Writing injected SQL for node "model.usawfl.stats"
+[0m16:29:56.275894 [debug] [Thread-1 (]: Began executing node model.usawfl.stats
+[0m16:29:56.282409 [debug] [Thread-1 (]: Writing runtime sql for node "model.usawfl.stats"
+[0m16:29:56.284739 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.stats"
+[0m16:29:56.285419 [debug] [Thread-1 (]: On model.usawfl.stats: BEGIN
+[0m16:29:56.286613 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m16:29:56.289586 [debug] [Thread-1 (]: SQL status: OK in 0.003 seconds
+[0m16:29:56.290308 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.stats"
+[0m16:29:56.291375 [debug] [Thread-1 (]: On model.usawfl.stats: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "node_id": "model.usawfl.stats"} */
+
+  
+    
+    
+
+    create  table
+      memory."fct_salesforce"."stats__dbt_tmp"
+  
+    as (
+      with members as (
+    select
+        m.*,
+        nullif(c.last_name, '') as last_name,
+        nullif(c.first_name, '') as first_name,
+        nullif(t.team_name, '') as team_name,
+        row_number() over(partition by m.id order by m.system_modstamp desc) as updated_order
+    from
+        's3://move-united/usawfl_salesforce_to_s3_file/raw_salesforce/usawfl__c/*.parquet' m
+
+    left join
+        memory."fct_salesforce"."teams" t
+    on
+        m.team__c = t.id
+
+    left join
+        memory."fct_salesforce"."contacts" c
+    on
+        m.contact__c = c.id
+
+    where
+        lower(m.is_deleted) = 'false'
+),
+
+stage as (
+    select * from members where updated_order = 1
+),
+
+stats as (
+    select
+        id,
+        last_name,
+        first_name,
+        name,
+        team_name,
+        replace(
+            replace(
+                'x2021_t_ds__c',
+                substring('x2021_t_ds__c' from 1 for strpos('x2021_t_ds__c','_')),
+                ''
+            ),
+            '__c',
+            ''
+        ) as stat,
+        cast(x2021_t_ds__c as int) as amount,
+        cast(substring('x2021_t_ds__c' from 2 for 4) as int) as year
+    from
+        stage
+    where
+        lower(is_deleted) = 'false'
+        and x2021_t_ds__c != ''
+
+    
+        
+    
+        
+
+    union all
+
+    select
+        id,
+        last_name,
+        first_name,
+        name,
+        team_name,
+        replace(
+            replace(
+                'x2021_in_ts__c',
+                substring('x2021_in_ts__c' from 1 for strpos('x2021_in_ts__c','_')),
+                ''
+            ),
+            '__c',
+            ''
+        ) as stat,
+        cast(x2021_in_ts__c as int),
+        cast(substring('x2021_in_ts__c' from 2 for 4) as int) as year
+    from
+        stage
+    where
+        lower(is_deleted) = 'false'
+        and x2021_in_ts__c != ''
+
+        
+    
+        
+
+    union all
+
+    select
+        id,
+        last_name,
+        first_name,
+        name,
+        team_name,
+        replace(
+            replace(
+                'x2021_sacks__c',
+                substring('x2021_sacks__c' from 1 for strpos('x2021_sacks__c','_')),
+                ''
+            ),
+            '__c',
+            ''
+        ) as stat,
+        cast(x2021_sacks__c as int),
+        cast(substring('x2021_sacks__c' from 2 for 4) as int) as year
+    from
+        stage
+    where
+        lower(is_deleted) = 'false'
+        and x2021_sacks__c != ''
+
+        
+    
+        
+
+    union all
+
+    select
+        id,
+        last_name,
+        first_name,
+        name,
+        team_name,
+        replace(
+            replace(
+                'x2022_safeties__c',
+                substring('x2022_safeties__c' from 1 for strpos('x2022_safeties__c','_')),
+                ''
+            ),
+            '__c',
+            ''
+        ) as stat,
+        cast(x2022_safeties__c as int),
+        cast(substring('x2022_safeties__c' from 2 for 4) as int) as year
+    from
+        stage
+    where
+        lower(is_deleted) = 'false'
+        and x2022_safeties__c != ''
+
+        
+    
+        
+
+    union all
+
+    select
+        id,
+        last_name,
+        first_name,
+        name,
+        team_name,
+        replace(
+            replace(
+                'x2022_in_ts__c',
+                substring('x2022_in_ts__c' from 1 for strpos('x2022_in_ts__c','_')),
+                ''
+            ),
+            '__c',
+            ''
+        ) as stat,
+        cast(x2022_in_ts__c as int),
+        cast(substring('x2022_in_ts__c' from 2 for 4) as int) as year
+    from
+        stage
+    where
+        lower(is_deleted) = 'false'
+        and x2022_in_ts__c != ''
+
+        
+    
+        
+
+    union all
+
+    select
+        id,
+        last_name,
+        first_name,
+        name,
+        team_name,
+        replace(
+            replace(
+                'x2022_sacks__c',
+                substring('x2022_sacks__c' from 1 for strpos('x2022_sacks__c','_')),
+                ''
+            ),
+            '__c',
+            ''
+        ) as stat,
+        cast(x2022_sacks__c as int),
+        cast(substring('x2022_sacks__c' from 2 for 4) as int) as year
+    from
+        stage
+    where
+        lower(is_deleted) = 'false'
+        and x2022_sacks__c != ''
+
+        
+    
+        
+
+    union all
+
+    select
+        id,
+        last_name,
+        first_name,
+        name,
+        team_name,
+        replace(
+            replace(
+                'x2022_t_ds__c',
+                substring('x2022_t_ds__c' from 1 for strpos('x2022_t_ds__c','_')),
+                ''
+            ),
+            '__c',
+            ''
+        ) as stat,
+        cast(x2022_t_ds__c as int),
+        cast(substring('x2022_t_ds__c' from 2 for 4) as int) as year
+    from
+        stage
+    where
+        lower(is_deleted) = 'false'
+        and x2022_t_ds__c != ''
+
+        
+    
+        
+
+    union all
+
+    select
+        id,
+        last_name,
+        first_name,
+        name,
+        team_name,
+        replace(
+            replace(
+                'x2023_safeties__c',
+                substring('x2023_safeties__c' from 1 for strpos('x2023_safeties__c','_')),
+                ''
+            ),
+            '__c',
+            ''
+        ) as stat,
+        cast(x2023_safeties__c as int),
+        cast(substring('x2023_safeties__c' from 2 for 4) as int) as year
+    from
+        stage
+    where
+        lower(is_deleted) = 'false'
+        and x2023_safeties__c != ''
+
+        
+    
+        
+
+    union all
+
+    select
+        id,
+        last_name,
+        first_name,
+        name,
+        team_name,
+        replace(
+            replace(
+                'x2023_in_ts__c',
+                substring('x2023_in_ts__c' from 1 for strpos('x2023_in_ts__c','_')),
+                ''
+            ),
+            '__c',
+            ''
+        ) as stat,
+        cast(x2023_in_ts__c as int),
+        cast(substring('x2023_in_ts__c' from 2 for 4) as int) as year
+    from
+        stage
+    where
+        lower(is_deleted) = 'false'
+        and x2023_in_ts__c != ''
+
+        
+    
+        
+
+    union all
+
+    select
+        id,
+        last_name,
+        first_name,
+        name,
+        team_name,
+        replace(
+            replace(
+                'x2023_sacks__c',
+                substring('x2023_sacks__c' from 1 for strpos('x2023_sacks__c','_')),
+                ''
+            ),
+            '__c',
+            ''
+        ) as stat,
+        cast(x2023_sacks__c as int),
+        cast(substring('x2023_sacks__c' from 2 for 4) as int) as year
+    from
+        stage
+    where
+        lower(is_deleted) = 'false'
+        and x2023_sacks__c != ''
+
+        
+    
+        
+
+    union all
+
+    select
+        id,
+        last_name,
+        first_name,
+        name,
+        team_name,
+        replace(
+            replace(
+                'x2023_t_ds__c',
+                substring('x2023_t_ds__c' from 1 for strpos('x2023_t_ds__c','_')),
+                ''
+            ),
+            '__c',
+            ''
+        ) as stat,
+        cast(x2023_t_ds__c as int),
+        cast(substring('x2023_t_ds__c' from 2 for 4) as int) as year
+    from
+        stage
+    where
+        lower(is_deleted) = 'false'
+        and x2023_t_ds__c != ''
+
+        
+    
+        
+
+    union all
+
+    select
+        id,
+        last_name,
+        first_name,
+        name,
+        team_name,
+        replace(
+            replace(
+                'x2024_safeties__c',
+                substring('x2024_safeties__c' from 1 for strpos('x2024_safeties__c','_')),
+                ''
+            ),
+            '__c',
+            ''
+        ) as stat,
+        cast(x2024_safeties__c as int),
+        cast(substring('x2024_safeties__c' from 2 for 4) as int) as year
+    from
+        stage
+    where
+        lower(is_deleted) = 'false'
+        and x2024_safeties__c != ''
+
+        
+    
+        
+
+    union all
+
+    select
+        id,
+        last_name,
+        first_name,
+        name,
+        team_name,
+        replace(
+            replace(
+                'x2024_in_ts__c',
+                substring('x2024_in_ts__c' from 1 for strpos('x2024_in_ts__c','_')),
+                ''
+            ),
+            '__c',
+            ''
+        ) as stat,
+        cast(x2024_in_ts__c as int),
+        cast(substring('x2024_in_ts__c' from 2 for 4) as int) as year
+    from
+        stage
+    where
+        lower(is_deleted) = 'false'
+        and x2024_in_ts__c != ''
+
+        
+    
+        
+
+    union all
+
+    select
+        id,
+        last_name,
+        first_name,
+        name,
+        team_name,
+        replace(
+            replace(
+                'x2024_sacks__c',
+                substring('x2024_sacks__c' from 1 for strpos('x2024_sacks__c','_')),
+                ''
+            ),
+            '__c',
+            ''
+        ) as stat,
+        cast(x2024_sacks__c as int),
+        cast(substring('x2024_sacks__c' from 2 for 4) as int) as year
+    from
+        stage
+    where
+        lower(is_deleted) = 'false'
+        and x2024_sacks__c != ''
+
+        
+    
+        
+
+    union all
+
+    select
+        id,
+        last_name,
+        first_name,
+        name,
+        team_name,
+        replace(
+            replace(
+                'x2024_t_ds__c',
+                substring('x2024_t_ds__c' from 1 for strpos('x2024_t_ds__c','_')),
+                ''
+            ),
+            '__c',
+            ''
+        ) as stat,
+        cast(x2024_t_ds__c as int),
+        cast(substring('x2024_t_ds__c' from 2 for 4) as int) as year
+    from
+        stage
+    where
+        lower(is_deleted) = 'false'
+        and x2024_t_ds__c != ''
+
+        
+    
+)
+
+select
+    last_name,
+    first_name,
+    team_name,
+    case
+        when right(stat, 1) = 's'
+        then left(replace(stat, '_', ''), len(replace(stat, '_', '')) - 1 )
+        else replace(stat, '_', '')
+        end as stat,
+    amount,
+    year
+from
+    stats
+    );
+  
+  
+[0m16:29:58.115003 [debug] [Thread-1 (]: SQL status: OK in 1.822 seconds
+[0m16:29:58.118417 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.stats"
+[0m16:29:58.118920 [debug] [Thread-1 (]: On model.usawfl.stats: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "node_id": "model.usawfl.stats"} */
+alter table memory."fct_salesforce"."stats__dbt_tmp" rename to "stats"
+[0m16:29:58.119798 [debug] [Thread-1 (]: SQL status: OK in 0.000 seconds
+[0m16:29:58.124840 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.stats"
+[0m16:29:58.125362 [debug] [Thread-1 (]: On model.usawfl.stats: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "node_id": "model.usawfl.stats"} */
+
+        COPY (SELECT * FROM memory."fct_salesforce"."stats") TO '/Users/vongly/dev/freelance/MoveUnited/usawfl/test/duckdb_files/prod/fct_salesforce/stats/stats.parquet' (FORMAT PARQUET, OVERWRITE)
+      
+[0m16:29:58.127725 [debug] [Thread-1 (]: SQL status: OK in 0.002 seconds
+[0m16:29:58.129165 [debug] [Thread-1 (]: On model.usawfl.stats: COMMIT
+[0m16:29:58.129647 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.stats"
+[0m16:29:58.130079 [debug] [Thread-1 (]: On model.usawfl.stats: COMMIT
+[0m16:29:58.130857 [debug] [Thread-1 (]: SQL status: OK in 0.000 seconds
+[0m16:29:58.133362 [debug] [Thread-1 (]: Using duckdb connection "model.usawfl.stats"
+[0m16:29:58.133817 [debug] [Thread-1 (]: On model.usawfl.stats: /* {"app": "dbt", "dbt_version": "1.10.9", "profile_name": "usawfl", "target_name": "prod", "node_id": "model.usawfl.stats"} */
+
+      drop table if exists memory."fct_salesforce"."stats__dbt_backup" cascade
+    
+[0m16:29:58.134538 [debug] [Thread-1 (]: SQL status: OK in 0.000 seconds
+[0m16:29:58.135997 [debug] [Thread-1 (]: On model.usawfl.stats: Close
+[0m16:29:58.136727 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'ef85d04e-8310-44c8-a59d-5770ad4d96ec', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10f50bb60>]}
+[0m16:29:58.137761 [info ] [Thread-1 (]: 7 of 7 OK created sql table model fct_salesforce.stats ......................... [[32mOK[0m in 1.87s]
+[0m16:29:58.138741 [debug] [Thread-1 (]: Finished running node model.usawfl.stats
+[0m16:29:58.140027 [debug] [MainThread]: Using duckdb connection "master"
+[0m16:29:58.140464 [debug] [MainThread]: On master: BEGIN
+[0m16:29:58.140862 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m16:29:58.142705 [debug] [MainThread]: SQL status: OK in 0.002 seconds
+[0m16:29:58.143190 [debug] [MainThread]: On master: COMMIT
+[0m16:29:58.143658 [debug] [MainThread]: Using duckdb connection "master"
+[0m16:29:58.144055 [debug] [MainThread]: On master: COMMIT
+[0m16:29:58.144753 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m16:29:58.145254 [debug] [MainThread]: On master: Close
+[0m16:29:58.146007 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m16:29:58.146405 [debug] [MainThread]: Connection 'model.usawfl.stats' was properly closed.
+[0m16:29:58.146880 [info ] [MainThread]: 
+[0m16:29:58.147305 [info ] [MainThread]: Finished running 7 table models in 0 hours 0 minutes and 12.31 seconds (12.31s).
+[0m16:29:58.149102 [debug] [MainThread]: Command end result
+[0m16:29:58.172494 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/vongly/dev/freelance/MoveUnited/usawfl/transform/usawfl/target/manifest.json
+[0m16:29:58.174487 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/vongly/dev/freelance/MoveUnited/usawfl/transform/usawfl/target/semantic_manifest.json
+[0m16:29:58.181670 [debug] [MainThread]: Wrote artifact RunExecutionResult to /Users/vongly/dev/freelance/MoveUnited/usawfl/transform/usawfl/target/run_results.json
+[0m16:29:58.182123 [info ] [MainThread]: 
+[0m16:29:58.182582 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m16:29:58.182975 [info ] [MainThread]: 
+[0m16:29:58.183481 [info ] [MainThread]: Done. PASS=7 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=7
+[0m16:29:58.185994 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 14.924888, "process_in_blocks": "0", "process_kernel_time": 0.882972, "process_mem_max_rss": "374964224", "process_out_blocks": "0", "process_user_time": 9.216026}
+[0m16:29:58.186712 [debug] [MainThread]: Command `dbt run` succeeded at 16:29:58.186568 after 14.93 seconds
+[0m16:29:58.187340 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e91eb10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e91ef30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e91ed20>]}
+[0m16:29:58.187817 [debug] [MainThread]: Flushing usage events
+[0m16:29:58.658349 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m16:30:01.176024 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cce08f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10f5df5c0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10f5df020>]}
+
+
+============================== 16:30:01.181102 | ce4103b4-3553-4dc1-8760-d4945fe58fac ==============================
+[0m16:30:01.181102 [info ] [MainThread]: Running with dbt=1.10.9
+[0m16:30:01.181814 [debug] [MainThread]: running dbt with arguments {'use_colors': 'True', 'log_path': '/Users/vongly/dev/freelance/MoveUnited/usawfl/transform/usawfl/logs', 'quiet': 'False', 'invocation_command': 'dbt ls --resource-type model --output json', 'profiles_dir': '/Users/vongly/dev/freelance/MoveUnited/usawfl/transform/usawfl', 'debug': 'False', 'use_experimental_parser': 'False', 'write_json': 'True', 'partial_parse': 'True', 'fail_fast': 'False', 'log_format': 'default', 'target_path': 'None', 'version_check': 'True', 'static_parser': 'True', 'warn_error': 'None', 'cache_selected_only': 'False', 'send_anonymous_usage_stats': 'True', 'indirect_selection': 'eager', 'no_print': 'None', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'empty': 'None', 'printer_width': '80', 'log_cache_events': 'False'}
+[0m16:30:01.475693 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'ce4103b4-3553-4dc1-8760-d4945fe58fac', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10f615b20>]}
+[0m16:30:01.554845 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'ce4103b4-3553-4dc1-8760-d4945fe58fac', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ef26630>]}
+[0m16:30:01.556804 [info ] [MainThread]: Registered adapter: duckdb=1.9.6
+[0m16:30:01.807808 [debug] [MainThread]: checksum: 6543b8b248ceda473ef0d611849d5d909085b6b714afa9b515e9635faea7af23, vars: {}, profile: , target: , version: 1.10.9
+[0m16:30:01.989186 [info ] [MainThread]: Unable to do partial parsing because config vars, config profile, or config target have changed
+[0m16:30:01.989734 [debug] [MainThread]: previous checksum: 6543b8b248ceda473ef0d611849d5d909085b6b714afa9b515e9635faea7af23, current checksum: 2980a21a4fc584f27f03453e4d43c980470d5de79693c5ce0bc2b462a52f088e
+[0m16:30:01.990169 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': 'ce4103b4-3553-4dc1-8760-d4945fe58fac', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ef656a0>]}
+[0m16:30:03.448551 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'ce4103b4-3553-4dc1-8760-d4945fe58fac', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10fa60260>]}
+[0m16:30:03.524248 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/vongly/dev/freelance/MoveUnited/usawfl/transform/usawfl/target/manifest.json
+[0m16:30:03.526618 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/vongly/dev/freelance/MoveUnited/usawfl/transform/usawfl/target/semantic_manifest.json
+[0m16:30:03.541383 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'ce4103b4-3553-4dc1-8760-d4945fe58fac', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10fdef5f0>]}
+[0m16:30:03.541996 [info ] [MainThread]: Found 7 models, 6 sources, 441 macros
+[0m16:30:03.542429 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'ce4103b4-3553-4dc1-8760-d4945fe58fac', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10fd21640>]}
+[0m16:30:03.543633 [info ] [MainThread]: {"name": "contacts", "resource_type": "model", "package_name": "usawfl", "original_file_path": "models/fct_salesforce/contacts.sql", "unique_id": "model.usawfl.contacts", "alias": "contacts", "config": {"enabled": true, "alias": null, "schema": "fct_salesforce", "database": null, "tags": [], "meta": {}, "group": null, "materialized": "table", "incremental_strategy": null, "batch_size": null, "lookback": 1, "begin": null, "persist_docs": {}, "post-hook": [{"sql": "{% if var('environment') == 'prod' %} COPY (SELECT * FROM {{ this }}) TO '{{ var('parquet_output_prod') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet' (FORMAT PARQUET, OVERWRITE) {% else %} COPY (SELECT * FROM {{ this }}) TO '{{ var('parquet_output_dev') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet' (FORMAT PARQUET, OVERWRITE) {% endif %} ", "transaction": true, "index": null}], "pre-hook": [], "quoting": {}, "column_types": {}, "full_refresh": null, "unique_key": null, "on_schema_change": "ignore", "on_configuration_change": "apply", "grants": {}, "packages": [], "docs": {"show": true, "node_color": null}, "contract": {"enforced": false, "alias_types": true}, "event_time": null, "concurrent_batches": null, "access": "protected", "freshness": null}, "tags": [], "depends_on": {"macros": ["macro.usawfl.title_name", "macro.usawfl.return_numbers_from_string", "macro.usawfl.clean_punct", "macro.usawfl.format_phone_number", "macro.usawfl.clean_contact_states", "macro.usawfl.clean_to_5_digit_zip", "macro.usawfl.clean_contact_countries"], "nodes": ["source.usawfl.salesforce_raw.contacts", "model.usawfl.states"]}}
+[0m16:30:03.544265 [info ] [MainThread]: {"name": "members", "resource_type": "model", "package_name": "usawfl", "original_file_path": "models/fct_salesforce/members.sql", "unique_id": "model.usawfl.members", "alias": "members", "config": {"enabled": true, "alias": null, "schema": "fct_salesforce", "database": null, "tags": [], "meta": {}, "group": null, "materialized": "table", "incremental_strategy": null, "batch_size": null, "lookback": 1, "begin": null, "persist_docs": {}, "post-hook": [{"sql": "{% if var('environment') == 'prod' %} COPY (SELECT * FROM {{ this }}) TO '{{ var('parquet_output_prod') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet' (FORMAT PARQUET, OVERWRITE) {% else %} COPY (SELECT * FROM {{ this }}) TO '{{ var('parquet_output_dev') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet' (FORMAT PARQUET, OVERWRITE) {% endif %} ", "transaction": true, "index": null}], "pre-hook": [], "quoting": {}, "column_types": {}, "full_refresh": null, "unique_key": null, "on_schema_change": "ignore", "on_configuration_change": "apply", "grants": {}, "packages": [], "docs": {"show": true, "node_color": null}, "contract": {"enforced": false, "alias_types": true}, "event_time": null, "concurrent_batches": null, "access": "protected", "freshness": null}, "tags": [], "depends_on": {"macros": [], "nodes": ["source.usawfl.salesforce_raw.members", "model.usawfl.contacts", "model.usawfl.teams"]}}
+[0m16:30:03.544851 [info ] [MainThread]: {"name": "officials", "resource_type": "model", "package_name": "usawfl", "original_file_path": "models/fct_salesforce/officials.sql", "unique_id": "model.usawfl.officials", "alias": "officials", "config": {"enabled": true, "alias": null, "schema": "fct_salesforce", "database": null, "tags": [], "meta": {}, "group": null, "materialized": "table", "incremental_strategy": null, "batch_size": null, "lookback": 1, "begin": null, "persist_docs": {}, "post-hook": [{"sql": "{% if var('environment') == 'prod' %} COPY (SELECT * FROM {{ this }}) TO '{{ var('parquet_output_prod') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet' (FORMAT PARQUET, OVERWRITE) {% else %} COPY (SELECT * FROM {{ this }}) TO '{{ var('parquet_output_dev') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet' (FORMAT PARQUET, OVERWRITE) {% endif %} ", "transaction": true, "index": null}], "pre-hook": [], "quoting": {}, "column_types": {}, "full_refresh": null, "unique_key": null, "on_schema_change": "ignore", "on_configuration_change": "apply", "grants": {}, "packages": [], "docs": {"show": true, "node_color": null}, "contract": {"enforced": false, "alias_types": true}, "event_time": null, "concurrent_batches": null, "access": "protected", "freshness": null}, "tags": [], "depends_on": {"macros": [], "nodes": ["source.usawfl.salesforce_raw.officials", "source.usawfl.salesforce_raw.official_links", "model.usawfl.tournaments", "model.usawfl.contacts"]}}
+[0m16:30:03.545425 [info ] [MainThread]: {"name": "states", "resource_type": "model", "package_name": "usawfl", "original_file_path": "models/fct_references/states.sql", "unique_id": "model.usawfl.states", "alias": "states", "config": {"enabled": true, "alias": null, "schema": "fct_references", "database": null, "tags": [], "meta": {}, "group": null, "materialized": "table", "incremental_strategy": null, "batch_size": null, "lookback": 1, "begin": null, "persist_docs": {}, "post-hook": [{"sql": "{% if var('environment') == 'prod' %} COPY (SELECT * FROM {{ this }}) TO '{{ var('parquet_output_prod') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet' (FORMAT PARQUET, OVERWRITE) {% else %} COPY (SELECT * FROM {{ this }}) TO '{{ var('parquet_output_dev') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet' (FORMAT PARQUET, OVERWRITE) {% endif %} ", "transaction": true, "index": null}], "pre-hook": [], "quoting": {}, "column_types": {}, "full_refresh": null, "unique_key": null, "on_schema_change": "ignore", "on_configuration_change": "apply", "grants": {}, "packages": [], "docs": {"show": true, "node_color": null}, "contract": {"enforced": false, "alias_types": true}, "event_time": null, "concurrent_batches": null, "access": "protected", "freshness": null}, "tags": [], "depends_on": {"macros": [], "nodes": []}}
+[0m16:30:03.546001 [info ] [MainThread]: {"name": "stats", "resource_type": "model", "package_name": "usawfl", "original_file_path": "models/fct_salesforce/stats.sql", "unique_id": "model.usawfl.stats", "alias": "stats", "config": {"enabled": true, "alias": null, "schema": "fct_salesforce", "database": null, "tags": [], "meta": {}, "group": null, "materialized": "table", "incremental_strategy": null, "batch_size": null, "lookback": 1, "begin": null, "persist_docs": {}, "post-hook": [{"sql": "{% if var('environment') == 'prod' %} COPY (SELECT * FROM {{ this }}) TO '{{ var('parquet_output_prod') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet' (FORMAT PARQUET, OVERWRITE) {% else %} COPY (SELECT * FROM {{ this }}) TO '{{ var('parquet_output_dev') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet' (FORMAT PARQUET, OVERWRITE) {% endif %} ", "transaction": true, "index": null}], "pre-hook": [], "quoting": {}, "column_types": {}, "full_refresh": null, "unique_key": null, "on_schema_change": "ignore", "on_configuration_change": "apply", "grants": {}, "packages": [], "docs": {"show": true, "node_color": null}, "contract": {"enforced": false, "alias_types": true}, "event_time": null, "concurrent_batches": null, "access": "protected", "freshness": null}, "tags": [], "depends_on": {"macros": [], "nodes": ["source.usawfl.salesforce_raw.members", "model.usawfl.teams", "model.usawfl.contacts"]}}
+[0m16:30:03.546578 [info ] [MainThread]: {"name": "teams", "resource_type": "model", "package_name": "usawfl", "original_file_path": "models/fct_salesforce/teams.sql", "unique_id": "model.usawfl.teams", "alias": "teams", "config": {"enabled": true, "alias": null, "schema": "fct_salesforce", "database": null, "tags": [], "meta": {}, "group": null, "materialized": "table", "incremental_strategy": null, "batch_size": null, "lookback": 1, "begin": null, "persist_docs": {}, "post-hook": [{"sql": "{% if var('environment') == 'prod' %} COPY (SELECT * FROM {{ this }}) TO '{{ var('parquet_output_prod') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet' (FORMAT PARQUET, OVERWRITE) {% else %} COPY (SELECT * FROM {{ this }}) TO '{{ var('parquet_output_dev') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet' (FORMAT PARQUET, OVERWRITE) {% endif %} ", "transaction": true, "index": null}], "pre-hook": [], "quoting": {}, "column_types": {}, "full_refresh": null, "unique_key": null, "on_schema_change": "ignore", "on_configuration_change": "apply", "grants": {}, "packages": [], "docs": {"show": true, "node_color": null}, "contract": {"enforced": false, "alias_types": true}, "event_time": null, "concurrent_batches": null, "access": "protected", "freshness": null}, "tags": [], "depends_on": {"macros": [], "nodes": ["source.usawfl.salesforce_raw.teams", "model.usawfl.contacts"]}}
+[0m16:30:03.547156 [info ] [MainThread]: {"name": "tournaments", "resource_type": "model", "package_name": "usawfl", "original_file_path": "models/fct_salesforce/tournaments.sql", "unique_id": "model.usawfl.tournaments", "alias": "tournaments", "config": {"enabled": true, "alias": null, "schema": "fct_salesforce", "database": null, "tags": [], "meta": {}, "group": null, "materialized": "table", "incremental_strategy": null, "batch_size": null, "lookback": 1, "begin": null, "persist_docs": {}, "post-hook": [{"sql": "{% if var('environment') == 'prod' %} COPY (SELECT * FROM {{ this }}) TO '{{ var('parquet_output_prod') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet' (FORMAT PARQUET, OVERWRITE) {% else %} COPY (SELECT * FROM {{ this }}) TO '{{ var('parquet_output_dev') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet' (FORMAT PARQUET, OVERWRITE) {% endif %} ", "transaction": true, "index": null}], "pre-hook": [], "quoting": {}, "column_types": {}, "full_refresh": null, "unique_key": null, "on_schema_change": "ignore", "on_configuration_change": "apply", "grants": {}, "packages": [], "docs": {"show": true, "node_color": null}, "contract": {"enforced": false, "alias_types": true}, "event_time": null, "concurrent_batches": null, "access": "protected", "freshness": null}, "tags": [], "depends_on": {"macros": ["macro.usawfl.parse_tournament_date_string"], "nodes": ["source.usawfl.salesforce_raw.tournaments"]}}
+[0m16:30:03.549840 [debug] [MainThread]: Resource report: {"command_name": "list", "command_success": true, "command_wall_clock_time": 2.4595196, "process_in_blocks": "0", "process_kernel_time": 0.333004, "process_mem_max_rss": "126881792", "process_out_blocks": "0", "process_user_time": 3.853239}
+[0m16:30:03.550452 [debug] [MainThread]: Command `dbt ls` succeeded at 16:30:03.550326 after 2.46 seconds
+[0m16:30:03.550947 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10f40a150>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10fd0ca10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10f65e780>]}
+[0m16:30:03.551535 [debug] [MainThread]: Flushing usage events
+[0m16:30:03.999386 [debug] [MainThread]: An error was encountered while trying to flush usage events

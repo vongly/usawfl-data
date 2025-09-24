@@ -93,37 +93,6 @@ def get_all_data_files(file_extension, directory=EXTRACT_DIR):
 
     return all_data_files
 
-def get_all_data_files(file_extension, directory=EXTRACT_DIR):    
-    pipelines = os.listdir(directory)
-
-    datasets = []
-    for pipeline in pipelines:
-        dataset = os.listdir(f'{directory}/{pipeline}')[0]
-        datasets.append(f'{directory}/{pipeline}/{dataset}')
-
-    dlt_folders = [
-        '_dlt_loads',
-        '_dlt_pipeline_state',
-        '_dlt_version',
-        'init',
-    ]
-
-    tables = []
-    for dataset in datasets:
-        dataset_tables = os.listdir(dataset)
-        for dataset_table in dataset_tables:
-            if dataset_table not in dlt_folders:
-                tables.append(f'{dataset}/{dataset_table}')
-
-    all_data_files = []
-    for table in tables:
-        data_files = os.listdir(table)
-        for data_file in data_files:
-            if data_file.endswith(file_extension):
-                all_data_files.append(f'{table}/{data_file}')
-
-    return all_data_files
-
 def query_data_files(pipeline, dataset, query):
     query_cleaned = re.sub(r'\s+', ' ', query.replace('\n',' ').lower())
 
