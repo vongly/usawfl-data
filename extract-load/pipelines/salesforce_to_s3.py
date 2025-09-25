@@ -7,9 +7,9 @@ from pathlib import Path
 parent_dir = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(parent_dir))
 
-from core.salesforce_pipeline import SalesforcePipeline
+from core.pipeline import CreatePipeline
 from utils.resources.salesforceAPI import SalesforceResource
-from utils.connections import SalesforceBulkCall
+from utils.salesforce_connection import SalesforceBulkCall
 
 from utils.helpers import pretty_all_jsons
 
@@ -18,41 +18,34 @@ from env import (
     S3_SECRET_ACCESS_KEY,
     S3_REGION,
     S3_ENDPOINT_URL,
+    SF_OBJECTS,
 )
-
 
 
 def run_pipeline(test=False):
 
-    pipeline_name = 'usawfl_salesforce_to_s3_file'
+    pipeline_name = 'salesforce_to_s3'
     dataset = 'raw_salesforce'
     destination = 'filesystem'
 
-    objects = [
-        'USAWFLOfficialLink__c',
-        'USAWFL_Officials__c',
-        'USAWFL_Team__c',
-        'USAWFL_Tournaments__c',
-        'USAWFL__c',
-        'Contact',
-    ]
+    objects = SF_OBJECTS.split(',')
 
     if test:
-        pipeline_name = pipeline_name + '_test'
-        dataset = dataset + '_test'
+        pipeline_name = '_test_' + pipeline_name
+        dataset = '_test_' + dataset
 
-        os.environ['USAWFL_SALESFORCE_TO_S3_FILE_TEST__DESTINATION__FILESYSTEM__BUCKET_URL'] = f's3://{pipeline_name}'
-        os.environ['USAWFL_SALESFORCE_TO_S3_FILE_TEST__DESTINATION__CREDENTIALS__ENDPOINT_URL'] = S3_ENDPOINT_URL
-        os.environ['USAWFL_SALESFORCE_TO_S3_FILE_TEST__DESTINATION__CREDENTIALS__AWS_ACCESS_KEY_ID'] = S3_ACCESS_KEY
-        os.environ['USAWFL_SALESFORCE_TO_S3_FILE_TEST__DESTINATION__CREDENTIALS__AWS_SECRET_ACCESS_KEY'] = S3_SECRET_ACCESS_KEY
-        os.environ['USAWFL_SALESFORCE_TO_S3_FILE_TEST__DESTINATION__CREDENTIALS__AWS_DEFAULT_REGION'] = S3_REGION
+        os.environ['SALESFORCE_TO_S3_TEST__DESTINATION__FILESYSTEM__BUCKET_URL'] = f's3://{pipeline_name}'
+        os.environ['SALESFORCE_TO_S3_TEST__DESTINATION__CREDENTIALS__ENDPOINT_URL'] = S3_ENDPOINT_URL
+        os.environ['SALESFORCE_TO_S3_TEST__DESTINATION__CREDENTIALS__AWS_ACCESS_KEY_ID'] = S3_ACCESS_KEY
+        os.environ['SALESFORCE_TO_S3_TEST__DESTINATION__CREDENTIALS__AWS_SECRET_ACCESS_KEY'] = S3_SECRET_ACCESS_KEY
+        os.environ['SALESFORCE_TO_S3_TEST__DESTINATION__CREDENTIALS__AWS_DEFAULT_REGION'] = S3_REGION
 
     else:
-        os.environ['USAWFL_SALESFORCE_TO_S3_FILE__DESTINATION__FILESYSTEM__BUCKET_URL'] = f's3://{pipeline_name}'
-        os.environ['USAWFL_SALESFORCE_TO_S3_FILE__DESTINATION__CREDENTIALS__ENDPOINT_URL'] = S3_ENDPOINT_URL
-        os.environ['USAWFL_SALESFORCE_TO_S3_FILE__DESTINATION__CREDENTIALS__AWS_ACCESS_KEY_ID'] = S3_ACCESS_KEY
-        os.environ['USAWFL_SALESFORCE_TO_S3_FILE__DESTINATION__CREDENTIALS__AWS_SECRET_ACCESS_KEY'] = S3_SECRET_ACCESS_KEY
-        os.environ['USAWFL_SALESFORCE_TO_S3_FILE__DESTINATION__CREDENTIALS__AWS_DEFAULT_REGION'] = S3_REGION
+        os.environ['SALESFORCE_TO_S3__DESTINATION__FILESYSTEM__BUCKET_URL'] = f's3://{pipeline_name}'
+        os.environ['SALESFORCE_TO_S3__DESTINATION__CREDENTIALS__ENDPOINT_URL'] = S3_ENDPOINT_URL
+        os.environ['SALESFORCE_TO_S3__DESTINATION__CREDENTIALS__AWS_ACCESS_KEY_ID'] = S3_ACCESS_KEY
+        os.environ['SALESFORCE_TO_S3__DESTINATION__CREDENTIALS__AWS_SECRET_ACCESS_KEY'] = S3_SECRET_ACCESS_KEY
+        os.environ['SALESFORCE_TO_S3__DESTINATION__CREDENTIALS__AWS_DEFAULT_REGION'] = S3_REGION
 
 
     api_call_session = SalesforceBulkCall(test=test)
@@ -66,7 +59,7 @@ def run_pipeline(test=False):
             for obj in objects
     ]
 
-    pipeline = SalesforcePipeline(
+    pipeline = CreatePipeline(
         pipeline_name=pipeline_name,
         dataset=dataset,
         destination=destination,

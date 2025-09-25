@@ -18,7 +18,7 @@ from utils.helpers import (
     print_pipeline_details,
 )
 
-class SalesforcePipeline:
+class CreatePipeline:
     def __init__(
         self,
         pipeline_name: str,

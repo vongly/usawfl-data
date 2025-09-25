@@ -12,11 +12,6 @@ sys.path.insert(0, str(parent_dir))
 from env import (
     PROJECT_DIRECTORY,
     EXTRACT_DIR,
-    POSTGRES_USER,
-    POSTGRES_PASSWORD,
-    POSTGRES_HOST,
-    POSTGRES_PORT,
-    POSTGRES_DB,
 )
 
 def print_pipeline_details(pipeline):
@@ -53,14 +48,6 @@ def pretty_all_jsons(base_dir=PROJECT_DIRECTORY):
                 output_path = os.path.join(root, file)
                 pretty_print_json_file(input_path, output_path)
 
-def query_postgres(query, dbname=POSTGRES_DB, user=POSTGRES_USER, password=POSTGRES_PASSWORD, host=POSTGRES_HOST, port=POSTGRES_PORT):
-    with psycopg.connect(
-        f'dbname={dbname} user={user} password={password} host={host} port={port}'
-    ) as conn:
-        with conn.cursor() as cur:
-            cur.execute(query)
-
-            return cur.fetchall()
 
 def get_all_data_files(file_extension, directory=EXTRACT_DIR):    
     pipelines = os.listdir(directory)

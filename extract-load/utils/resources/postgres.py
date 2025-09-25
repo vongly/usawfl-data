@@ -1,17 +1,23 @@
 import dlt
 from dlt.sources import incremental
 
+'''
+    use 'SystemModstamp' as incremental field
+'''
 
-class SalesforceResource:
+
+class PostgresResource:
     def __init__(
             self,
-            object_name,
-            api_call_session,
+            schema,
+            table,
+            call,
             incremental_attribute=None,
         ):
 
-        self.api_call_session = api_call_session
-        self.object_name = object_name
+        self.call = call
+        self.schema = schema
+        self.table = table
         self.incremental_attribute = incremental_attribute
         self.incremental_obj = incremental(incremental_attribute, initial_value=None) if incremental_attribute is not None else None
     
@@ -28,16 +34,16 @@ class SalesforceResource:
         else:
             incremental_string = None
 
-        yield from self.api_call_session.yield_records(
-            object_name=self.object_name,
+        yield from self.call.yield_records(
+            schema=self.schema,
+            table=self.table,
             incremental_attribute=self.incremental_attribute,
             incremental_string=incremental_string,
         )
 
     def create_resource(self):
-        @dlt.resource(name=self.object_name, table_name=self.object_name, write_disposition='append', primary_key=None)
+        @dlt.resource(name=self.table, table_name=self.table, write_disposition='append', primary_key=None)
         def my_resource(incremental_obj=self.incremental_obj):
             # primary_key=None -> to record history of slow changing fields
             yield self.yield_query_results(incremental_obj=incremental_obj)
         return my_resource()
-

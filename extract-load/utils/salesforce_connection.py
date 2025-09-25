@@ -67,10 +67,11 @@ class SalesforceBulkCall:
         self.session_id = tree.find('.//{urn:partner.soap.sforce.com}sessionId').text
         self.job_url = f'{instance_url}/services/data/v59.0/jobs/query'
 
-    def yield_records(self, object_name, incremental_string=None):
+    def yield_records(self, object_name, incremental_field, incremental_string=None):
         print('\n', '  ', object_name)
-        if incremental_string:
-            where_clause = f''' where SystemModstamp > {incremental_string}'''
+
+        if incremental_field and incremental_string:
+            where_clause = f''' where {incremental_field} > {incremental_string}'''
         else:
             where_clause = ''
 
