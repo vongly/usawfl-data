@@ -10,16 +10,10 @@ from dotenv import load_dotenv
 parent_dir = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(parent_dir))
 
-from utils.helpers import dbtOutputFiles, ConnectPSQL
-
 from env import (
     DBT_DIR,
     DBT_DOTENV_PATH,
     DBT_EXEC_PATH,
-    DB_READ_PATH,
-    DB_HOST,
-    DB_NAME,
-    DB_PORT,
 )
 
 load_dotenv(dotenv_path=DBT_DOTENV_PATH)
