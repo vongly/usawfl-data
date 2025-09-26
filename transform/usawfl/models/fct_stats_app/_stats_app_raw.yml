@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: stats_app_raw
+    schema: stats_app_raw
+    config:
+      meta:
+        external_location: "s3://move-united/stats_app_to_s3/raw_stats_app/{identifier}/*.parquet"
+    tables:
+      - name: players
+        identifier: player_classifications_player
+      - name: player_stats
+        identifier: player_classifications_playerstat
+      - name: stats
+        identifier: player_classifications_stat
+      - name: teams
+        identifier: player_classifications_team
+      - name: tournaments
+        identifier: player_classifications_tournament
+      - name: tournament_players
+        identifier: player_classifications_tournamentplayer

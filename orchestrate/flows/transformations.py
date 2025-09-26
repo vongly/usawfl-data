@@ -7,11 +7,10 @@ from pathlib import Path
 parent_dir = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(parent_dir))
 
-from tasks.dbt import (
-    dbt_run_task,
-    build_output_folders_task,
-    create_psql_views_task,
-)
+from tasks.build_dbt_output_folders import build_output_folders_task
+from tasks.create_postgres_views import create_psql_views_task
+from tasks.dbt import dbt_run_task
+
 
 
 @flow(name='Transformations')

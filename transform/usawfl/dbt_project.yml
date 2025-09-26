@@ -33,7 +33,7 @@ models:
     +post-hook:
       - "{% if var('environment') == 'prod' %}
           COPY (SELECT * FROM {{ this }})
-          TO '{{ var('parquet_output_prod') }}/{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet'
+          TO '{{ var('parquet_output_prod') }}{{ this.schema }}/{{ this.name }}/{{ this.name }}.parquet'
           (FORMAT PARQUET, OVERWRITE)
         {% else %}
           COPY (SELECT * FROM {{ this }})
@@ -43,5 +43,7 @@ models:
         "
     fct_salesforce:
       +schema: fct_salesforce
+    fct_stats_app:
+      +schema: fct_stats_app
     fct_references:
       +schema: fct_references

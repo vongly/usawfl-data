@@ -101,7 +101,7 @@
         cast(system_modstamp as timestamp) as updated,
         row_number() over(partition by id order by system_modstamp desc) as updated_order
     from
-        's3://move-united/usawfl_salesforce_to_s3_file/raw_salesforce/usawfl_tournaments__c/*.parquet'
+        's3://move-united/salesforce_to_s3/raw_salesforce/usawfl_tournaments__c/*.parquet'
     where
         lower(is_deleted) = 'false'
 )

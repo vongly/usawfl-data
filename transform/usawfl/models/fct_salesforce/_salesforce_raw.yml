@@ -5,7 +5,7 @@ sources:
     schema: salesforce_raw
     config:
       meta:
-        external_location: "s3://move-united/usawfl_salesforce_to_s3_file/raw_salesforce/{identifier}/*.parquet"
+        external_location: "s3://move-united/salesforce_to_s3/raw_salesforce/{identifier}/*.parquet"
     tables:
       - name: contacts
         identifier: contact
