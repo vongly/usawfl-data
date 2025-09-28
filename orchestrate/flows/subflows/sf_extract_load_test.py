@@ -9,6 +9,7 @@ sys.path.insert(0, str(parent_dir))
 
 from tasks.sf_extract_load import sf_extract_load_test_task
 
+
 @flow(name='Salesforce Extract Load Test')
 def sf_extract_load_test_flow():
     sf_extract_load_test_task()

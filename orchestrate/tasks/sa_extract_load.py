@@ -3,7 +3,6 @@ from prefect import task
 
 import sys, os
 from pathlib import Path
-import json
 
 from dotenv import load_dotenv
 
@@ -25,7 +24,6 @@ def sa_extract_load_task():
 @task(name='Stats App Extract Load Test')
 def sa_extract_load_test_task():
     extract_load(rel_file_path=SA_EXTRACT_LOAD_FILE_TEST)
-
 
 if __name__ == '__main__':
     sa_extract_load_task()

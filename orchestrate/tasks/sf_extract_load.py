@@ -3,7 +3,6 @@ from prefect import task
 
 import sys, os
 from pathlib import Path
-import json
 
 from dotenv import load_dotenv
 
@@ -25,7 +24,6 @@ def sf_extract_load_task():
 @task(name='Salesforce Extract Load Test')
 def sf_extract_load_test_task():
     extract_load(rel_file_path=SF_EXTRACT_LOAD_FILE_TEST)
-
 
 if __name__ == '__main__':
     sf_extract_load_task()

@@ -12,8 +12,9 @@ from env import DBT_DOTENV_PATH
 
 from utils.helpers import dbtOutputFiles, ConnectPSQL
 
+
 @task(name='Build dbt Output Folders')
-def build_output_folders_task():
+def build_dbt_output_folders_task():
 
     logger = get_run_logger()
 
@@ -42,4 +43,4 @@ def build_output_folders_task():
         raise
 
 if __name__ == '__main__':
-    build_output_folders_task()
+    build_dbt_output_folders_task()
