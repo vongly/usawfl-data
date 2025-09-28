@@ -9,7 +9,7 @@ sys.path.insert(0, str(parent_dir))
 from tasks.build_dbt_output_folders import build_dbt_output_folders_task
 
 
-@flow(name='Transformations')
+@flow(name='Build dbt Output Folders')
 def build_dbt_output_folders_flow():
 
     build_dbt_output_folders_task()

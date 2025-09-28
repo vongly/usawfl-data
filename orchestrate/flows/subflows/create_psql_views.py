@@ -10,7 +10,7 @@ from tasks.create_postgres_views import create_psql_views_task
 from tasks.dbt import dbt_run_task
 
 
-@flow(name='Transformations')
+@flow(name='Create Postgres Views')
 def create_psql_views_flow():
 
     create_psql_views_task()
