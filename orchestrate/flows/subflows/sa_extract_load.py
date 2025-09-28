@@ -10,7 +10,7 @@ sys.path.insert(0, str(parent_dir))
 from tasks.sa_extract_load import sa_extract_load_task
 
 
-@flow(name='Stats App Extract Load Test')
+@flow(name='Stats App Extract Load')
 def sa_extract_load_flow():
     sa_extract_load_task()
 
