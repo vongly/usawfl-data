@@ -4,7 +4,7 @@ from prefect import flow
 import sys
 from pathlib import Path
 
-parent_dir = Path(__file__).resolve().parents[1]
+parent_dir = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(parent_dir))
 
 from tasks.sa_extract_load import sa_extract_load_test_task
