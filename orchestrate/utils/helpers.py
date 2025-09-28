@@ -78,6 +78,8 @@ class dbtOutputFiles:
 
     def get_schema_structure(self):
 
+        logger = get_run_logger()
+
         try:
             result = subprocess.run(
                 [DBT_EXEC_PATH, 'ls', '--resource-type', 'model', '--output', 'json'],
@@ -86,15 +88,17 @@ class dbtOutputFiles:
                 text=True,
                 check=True
             )
-            print("STDOUT:", result.stdout)
-            print("STDERR:", result.stderr)
+            logger.info("dbt ls output:\n%s", result.stdout)
+            if result.stderr:
+                logger.warning("dbt ls stderr:\n%s", result.stderr)
+            logger.info(result.stdout)
 
         except subprocess.CalledProcessError as e:
-            print("FAILED")
-            print("Return code:", e.returncode)
-            print("STDOUT:", e.stdout)
-            print("STDERR:", e.stderr)
+            logger.error("dbt ls failed with return code %s", e.returncode)
+            logger.error("STDOUT:\n%s", e.stdout)
+            logger.error("STDERR:\n%s", e.stderr)
             raise
+
         self.schema_structure = []
 
         for line in result.stdout.splitlines():
