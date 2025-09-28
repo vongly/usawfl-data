@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: salesforce_raw
-    schema: {{ env_var('SF_RAW_SCHEMA') }}
+    schema: "{{ env_var('SF_RAW_SCHEMA') }}"
     config:
       meta:
         external_location: "{{ env_var('FILE_LOC_BASE') }}/{{ env_var('SF_RAW_SCHEMA') }}/{identifier}/*.parquet"
