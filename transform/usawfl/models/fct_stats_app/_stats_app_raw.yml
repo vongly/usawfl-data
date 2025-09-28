@@ -5,7 +5,7 @@ sources:
     schema: "{{ env_var('SA_RAW_SCHEMA') }}"
     config:
       meta:
-        external_location: "{{ env_var('FILE_LOC_BASE') }}/{{ env_var('SA_RAW_SCHEMA') }}/raw_stats_app/{identifier}/*.parquet"
+        external_location: "{{ env_var('FILE_LOC_BASE') }}/{{ env_var('SA_RAW_SCHEMA') }}/{identifier}/*.parquet"
     tables:
       - name: players
         identifier: player_classifications_player
