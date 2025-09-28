@@ -37,12 +37,12 @@ with stage as (
         {{ source('salesforce_raw', 'members') }} m
 
     left join
-        {{ ref('contacts') }} c
+        {{ ref('sf_contacts') }} c
     on
         m.contact__c = c.id
 
     left join
-        {{ ref('teams') }} t
+        {{ ref('sf_teams') }} t
     on
         m.team__c = t.id
 

@@ -9,7 +9,7 @@ with official_links_stage as (
     from 
         {{ source('salesforce_raw', 'official_links') }} ol
     left join
-        {{ ref('tournaments') }} t
+        {{ ref('sf_tournaments') }} t
     on
         ol.usawfl_tournament__c = t.id
     where
@@ -74,7 +74,7 @@ officials_stage as (
         {{ source('salesforce_raw', 'officials') }} o
 
     left join
-        {{ ref('contacts') }} c
+        {{ ref('sf_contacts') }} c
     on
         o.contact__c = c.id
 

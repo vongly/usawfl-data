@@ -24,7 +24,7 @@ with stage as (
         {{ source('salesforce_raw', 'teams') }} t
 
     left join
-        {{ ref('contacts') }} c1
+        {{ ref('sf_contacts') }} c1
     on
         t.primary_contact__c = c1.id
 )
