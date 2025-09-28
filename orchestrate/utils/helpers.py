@@ -65,14 +65,14 @@ class ConnectPSQL:
             port=port,
         )
 
-        def cursor(self):
-            return self.conn.cursor()
+    def cursor(self):
+        return self.conn.cursor()
 
-        def commit(self):
-            self.conn.commit()
+    def commit(self):
+        self.conn.commit()
 
-        def close(self):
-            self.conn.close()
+    def close(self):
+        self.conn.close()
 
 class dbtOutputFiles:
 
@@ -80,13 +80,24 @@ class dbtOutputFiles:
 
         logger = get_run_logger()
 
-        result = subprocess.run(
-            [DBT_EXEC_PATH, 'ls', '--resource-type', 'model', '--output', 'json'],
-            cwd=DBT_DIR,
-            capture_output=True,
-            text=True,
-            check=True
-        )
+        try:
+            result = subprocess.run(
+                [DBT_EXEC_PATH, 'ls', '--resource-type', 'model', '--output', 'json'],
+                cwd=DBT_DIR,
+                capture_output=True,
+                text=True,
+                check=True
+            )
+            logger.info("dbt ls output:\n%s", result.stdout)
+            if result.stderr:
+                logger.warning("dbt ls stderr:\n%s", result.stderr)
+            logger.info(result.stdout)
+
+        except subprocess.CalledProcessError as e:
+            logger.error("dbt ls failed with return code %s", e.returncode)
+            logger.error("STDOUT:\n%s", e.stdout)
+            logger.error("STDERR:\n%s", e.stderr)
+            raise
 
         self.schema_structure = []
 
