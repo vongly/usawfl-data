@@ -38,7 +38,8 @@ official_links as (
 officials_stage as (
     select
         o.id,
-        nullif(o.name, '') as name,
+        nullif(c.first_name, '') as first_name,
+        nullif(c.last_name, '') as last_name,
         nullif(o.type_of_official__c, '') as type,
         o.status__c as status,
         string_split(
@@ -53,8 +54,6 @@ officials_stage as (
         nullif(o.usawfl_rules_exam_pass_date__c, '') as usawfl_rules_exam_pass_date,
         cast(o.is_deleted as boolean) as is_deleted,
         if(c.id is null, false, true) as has_contact,
-        nullif(c.first_name, '') as first_name,
-        nullif(c.last_name, '') as last_name,
         nullif(c.phone, '') as phone,
         nullif(c.mobile_phone, '') as mobile_phone,
         nullif(c.home_phone, '') as home_phone,
@@ -92,14 +91,13 @@ officials_stage as (
 
 select
     id,
-    name,
+    first_name,
+    last_name,        
     type,
     status,
     preference,
     details,
     has_contact,
-    first_name,
-    last_name,        
     phone,
     mobile_phone,
     home_phone,

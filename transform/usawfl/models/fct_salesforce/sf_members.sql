@@ -1,7 +1,8 @@
 with stage as (
     select
         m.id,
-        nullif(m.name, '') as name,
+        nullif(c.first_name, '') as first_name,
+        nullif(c.last_name, '') as last_name,
         nullif(t.team_name, '') as team_name,
         nullif(m.contact_type__c, '') as contact_type,
         nullif(m.contact_subtype__c, '') as contact_subtype,
@@ -17,8 +18,6 @@ with stage as (
         nullif(m.rules_exam_passed__c, '') as rules_exam_passed,
         cast(m.is_deleted as boolean) as is_deleted,
         if(c.id is null, false, true) as has_contact,
-        nullif(c.first_name, '') as first_name,
-        nullif(c.last_name, '') as last_name,
         nullif(c.phone, '') as phone,
         nullif(c.mobile_phone, '') as mobile_phone,
         nullif(c.home_phone, '') as home_phone,
@@ -53,7 +52,8 @@ with stage as (
 
 select
     id,
-    name,
+    first_name,
+    last_name,        
     team_name,
     contact_type,
     contact_subtype,
@@ -68,8 +68,6 @@ select
     safe_sport_certified,
     rules_exam_passed,
     has_contact,
-    first_name,
-    last_name,        
     phone,
     mobile_phone,
     home_phone,
