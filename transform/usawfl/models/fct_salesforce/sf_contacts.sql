@@ -30,7 +30,7 @@ with stage as (
         cast(c.system_modstamp as timestamp) as updated,
         row_number() over(partition by c.id order by c.system_modstamp desc) as updated_order
     from
-        read_parquet({{ source('salesforce_raw', 'contacts') }}) c
+        read_parquet({{ source("{{ env_var('SF_RAW_SCHEMA') }}", 'contacts') }}) c
 
     left join
         {{ ref('states') }} sa

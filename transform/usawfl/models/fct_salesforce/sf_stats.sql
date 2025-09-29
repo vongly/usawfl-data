@@ -6,7 +6,7 @@ with members as (
         nullif(t.team_name, '') as team_name,
         row_number() over(partition by m.id order by m.system_modstamp desc) as updated_order
     from
-        {{ source('salesforce_raw', 'members') }} m
+        {{ source("{{ env_var('SF_RAW_SCHEMA') }}", 'members') }} m
 
     left join
         {{ ref('sf_teams') }} t
