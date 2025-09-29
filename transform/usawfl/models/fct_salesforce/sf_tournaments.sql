@@ -20,7 +20,7 @@ with stage as (
         cast(system_modstamp as timestamp) as updated,
         row_number() over(partition by id order by system_modstamp desc) as updated_order
     from
-        {{ source("{{ env_var('SF_RAW_NAME') }}", 'tournaments') }}
+        {{ source('salesforce_raw', 'tournaments') }}
     where
         lower(is_deleted) = 'false'
 )

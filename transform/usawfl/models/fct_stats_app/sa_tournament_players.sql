@@ -17,7 +17,7 @@ with stage as (
         cast(a.updated as timestamp) as updated,
         row_number() over(partition by a.id order by a.updated desc) as updated_order
     from
-        {{ source("{{ env_var('SA_RAW_NAME') }}", 'tournament_players') }} a
+        {{ source('stats_app_raw', 'tournament_players') }} a
 
     left join
         {{ ref('sa_players') }} as p

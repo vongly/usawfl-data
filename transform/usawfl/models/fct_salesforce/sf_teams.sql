@@ -21,7 +21,7 @@ with stage as (
         cast(t.system_modstamp as timestamp) as updated,
         row_number() over(partition by t.id order by t.system_modstamp desc) as updated_order,
     from
-        {{ source("{{ env_var('SF_RAW_NAME') }}", 'teams') }} t
+        {{ source('salesforce_raw', 'teams') }} t
 
     left join
         {{ ref('sf_contacts') }} c1
