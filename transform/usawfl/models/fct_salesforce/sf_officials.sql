@@ -71,7 +71,7 @@ officials_stage as (
         row_number() over(partition by o.id order by o.system_modstamp desc) as updated_order,
         row_number() over(partition by o.contact__c order by o.system_modstamp desc) as contact_updated_order,
     from
-        {{ source("{{ env_var('SF_RAW_SCHEMA') }}", 'officials') }} o
+        {{ source('salesforce_raw', 'officials') }} o
 
     left join
         {{ ref('sf_contacts') }} c
