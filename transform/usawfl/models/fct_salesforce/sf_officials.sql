@@ -7,7 +7,7 @@ with official_links_stage as (
         nullif(ol.days_assigned__c, '') as days_assigned,
         row_number() over(partition by ol.id order by ol.system_modstamp desc) as updated_order
     from 
-        {{ source('salesforce_raw', 'official_links') }} ol
+        {{ source("{{ env_var('SF_RAW_NAME') }}", 'official_links') }} ol
     left join
         {{ ref('sf_tournaments') }} t
     on

@@ -34,7 +34,7 @@ with stage as (
         row_number() over(partition by m.id order by m.system_modstamp desc) as updated_order,
         row_number() over(partition by m.contact__c order by m.system_modstamp desc) as contact_updated_order
     from
-        {{ source("{{ env_var('SF_RAW_SCHEMA') }}", 'members') }} m
+        {{ source("{{ env_var('SF_RAW_NAME') }}", 'members') }} m
 
     left join
         {{ ref('sf_contacts') }} c

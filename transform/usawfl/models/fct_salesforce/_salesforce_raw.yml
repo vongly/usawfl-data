@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: "{{ env_var('SF_RAW_SCHEMA') }}"
+  - name: "{{ env_var('SF_RAW_NAME') }}"
     schema: "{{ env_var('SF_RAW_SCHEMA') }}"
     config:
       meta:
