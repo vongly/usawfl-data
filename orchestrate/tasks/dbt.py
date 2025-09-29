@@ -64,5 +64,15 @@ def dbt_seed_task(cmd_suffix=None):
 
     run_dbt_commands(command)
 
+@task(name='dbt Build')
+def dbt_build_task(cmd_suffix=None):
+    command = ['build']
+
+    if cmd_suffix:
+        cmd_suffix = cmd_suffix.split(' ')
+        command = command + cmd_suffix
+
+    run_dbt_commands(command)
+
 if __name__ == '__main__':
     dbt_run_task('--target prod')

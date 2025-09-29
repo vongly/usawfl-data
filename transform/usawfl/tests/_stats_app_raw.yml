@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: sa_player_stats
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
+  - name: sa_players
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
+  - name: sa_stats
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
+  - name: sa_tournament_players
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
+  - name: sa_tournaments
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null

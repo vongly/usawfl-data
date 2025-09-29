@@ -7,7 +7,7 @@ parent_dir = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(parent_dir))
 
 from subflows.build_dbt_output_folders import build_dbt_output_folders_flow
-from subflows.dbt_run import dbt_run_flow
+from subflows.dbt_build import dbt_build_flow
 from subflows.create_psql_views import create_psql_views_flow
 
 
@@ -15,7 +15,7 @@ from subflows.create_psql_views import create_psql_views_flow
 def full_transformation_flow():
 
     build_dbt_output_folders_flow()
-    dbt_run_flow()
+    dbt_build_flow()
     create_psql_views_flow()
 
 if __name__ == '__main__':

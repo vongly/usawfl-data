@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: sf_contacts
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
+  - name: sf_members
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
+  - name: sf_officials
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
+  - name: sf_tournaments
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
