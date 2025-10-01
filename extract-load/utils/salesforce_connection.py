@@ -116,14 +116,14 @@ class SalesforceBulkCall:
         else:
             print('\n')
 
-        result_url = f'{status_url}/results'
-        results = requests.get(result_url, headers={'Authorization': f'Bearer {self.session_id}'}, stream=True)
-        lines = results.content.decode('utf-8')
-        reader = csv.DictReader(io.StringIO(lines))
+        with requests.get(result_url, headers={'Authorization': f'Bearer {self.session_id}'}, stream=True) as r:
+            r.raise_for_status()
+            lines = (line.decode('utf-8') for line in r.iter_lines(decode_unicode=False))
+            reader = csv.DictReader(lines)
 
-        for record in reader:
-            record['_dlt_processed_utc'] = processed_timestamp
-            yield record
+            for record in reader:
+                record['_dlt_processed_utc'] = processed_timestamp
+                yield record
 
 if __name__ == '__main__':
     con = SalesforceBulkCall()
