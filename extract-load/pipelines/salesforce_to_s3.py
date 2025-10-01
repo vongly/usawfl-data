@@ -54,6 +54,7 @@ def run_pipeline(test=False):
             object_name=obj,
             api_call_session=api_call_session,
             incremental_attribute='SystemModstamp',
+            write_disposition=
         ).create_resource()
 
             for obj in objects

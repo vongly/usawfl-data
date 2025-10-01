@@ -8,13 +8,16 @@ class SalesforceResource:
             object_name,
             api_call_session,
             incremental_attribute=None,
+            write_disposition='append',
         ):
 
         self.api_call_session = api_call_session
         self.object_name = object_name
+
         self.incremental_attribute = incremental_attribute
         self.incremental_obj = incremental(incremental_attribute, initial_value=None) if incremental_attribute is not None else None
-    
+        self.write_disposition = write_disposition
+
     def yield_query_results(self, incremental_obj=None):
         # Incremental Filter -> requires incremental attribute
         if self.incremental_attribute:
@@ -35,7 +38,12 @@ class SalesforceResource:
         )
 
     def create_resource(self):
-        @dlt.resource(name=self.object_name, table_name=self.object_name, write_disposition='append', primary_key=None)
+        @dlt.resource(
+            name=self.object_name,
+            table_name=self.object_name,
+            write_disposition=self.write_disposition,
+            primary_key=None,
+        )
         def my_resource(incremental_obj=self.incremental_obj):
             # primary_key=None -> to record history of slow changing fields
             yield self.yield_query_results(incremental_obj=incremental_obj)
