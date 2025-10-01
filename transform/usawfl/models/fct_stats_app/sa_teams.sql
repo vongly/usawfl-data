@@ -21,7 +21,7 @@ stage as (
     from
         {{ source('stats_app_raw', 'teams') }} a
 
-    join load_id li on a._dlt_load_id = li._dlt_load_id land li.load_id_order = 1
+    join load_id li on a._dlt_load_id = li._dlt_load_id and li.load_id_order = 1
 )
 
 select
