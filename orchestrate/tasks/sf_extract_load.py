@@ -21,7 +21,7 @@ from env import (
 def sf_extract_load_task():
     extract_load(rel_file_path=SF_EXTRACT_LOAD_FILE)
 
-@task(name='Salesforce Extract Load Test')
+@task(name='Salesforce Extract Load Test', timeout_seconds=6000)
 def sf_extract_load_test_task():
     extract_load(rel_file_path=SF_EXTRACT_LOAD_FILE_TEST)
 
