@@ -1,4 +1,15 @@
-with stage as (
+with load_id as (
+    select
+        _dlt_load_id,
+        _dlt_processed_utc,
+        row_number() over(order by _dlt_processed_utc desc) as load_id_order
+    from
+        {{ source('stats_app_raw', 'player_stats') }} a
+    group by
+        1,2
+),
+
+stage as (
     select
         a.id,
         tp.first_name,
@@ -21,7 +32,9 @@ with stage as (
         row_number() over(partition by a.id order by a.updated desc) as updated_order
     from
         {{ source('stats_app_raw', 'player_stats') }} a
-    
+
+    join load_id li on a._dlt_load_id = li._dlt_load_id land li.load_id_order = 1
+
     join
         {{ ref('sa_tournament_players') }} as tp
     on

@@ -67,7 +67,13 @@ class SalesforceBulkCall:
         self.session_id = tree.find('.//{urn:partner.soap.sforce.com}sessionId').text
         self.job_url = f'{instance_url}/services/data/v59.0/jobs/query'
 
-    def yield_records(self, object_name, incremental_attribute, incremental_string=None):
+    def yield_records(
+        self,
+        object_name,
+        incremental_attribute,
+        incremental_string=None,
+        processed_timestamp=datetime.now(timezone.utc),
+    ):
         print('\n', '  ', object_name)
 
         if incremental_attribute and incremental_string:
@@ -116,7 +122,7 @@ class SalesforceBulkCall:
         reader = csv.DictReader(io.StringIO(lines))
 
         for record in reader:
-            record['_dlt_processed_utc'] = datetime.now(timezone.utc)
+            record['_dlt_processed_utc'] = processed_timestamp
             yield record
 
 if __name__ == '__main__':

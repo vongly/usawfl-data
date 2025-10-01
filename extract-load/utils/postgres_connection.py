@@ -1,5 +1,6 @@
 import sys
 from pathlib import Path
+from datetime import datetime, timezone
 
 import psycopg
 from psycopg.rows import dict_row
@@ -46,7 +47,13 @@ class PostgresCall():
         self.test = test
         self.test_limit = test_limit
 
-    def yield_records(self, schema, table, incremental_string=None, incremental_attribute=None):
+    def yield_records(self,
+        schema,
+        table,
+        incremental_string=None,
+        incremental_attribute=None,
+        processed_timestamp=datetime.now(timezone.utc),
+    ):
         print('\n', '  ', f'{schema}.{table}')
 
         where_clause = f''' where {incremental_attribute} > '{incremental_string}' ''' if incremental_attribute and incremental_string else ''            
@@ -57,7 +64,13 @@ class PostgresCall():
         
         limit_clause = f' LIMIT {self.test_limit}' if self.test else ''
 
-        query = f'select * from {schema}.{table} ' + where_clause + limit_clause + ';'
+        query = f'''
+                select
+                    *,
+                    cast('{processed_timestamp}' as timestamp) as _dlt_processed_utc
+                from
+                    {schema}.{table} 
+            ''' + where_clause + limit_clause + ';'
 
 
         with self.connection.cursor() as cursor:

@@ -3,6 +3,7 @@ import dlt
 import os
 import sys
 from pathlib import Path
+from datetime import datetime, timezone
 
 parent_dir = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(parent_dir))
@@ -27,6 +28,11 @@ from env import (
     STATS_POSTGRES_TABLES_PREFIX,
 )
 
+'''
+
+    set to full replace to incorporate hard deletes from source
+
+'''
 
 def run_pipeline(test=False):
 
@@ -70,7 +76,7 @@ def run_pipeline(test=False):
             schema=schema,
             table=table_prefix+table,
             call=call,
-            incremental_attribute='updated',
+            write_distposition='replace',
         ).create_resource()
 
             for table in tables
